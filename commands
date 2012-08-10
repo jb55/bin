@@ -1,0 +1,3 @@
+#!/bin/bash
+mkfifo /tmp/cmds &> /dev/null
+while :; do bash < /tmp/cmds && echo "== OK ==" || echo "!! ERR !!"; done
