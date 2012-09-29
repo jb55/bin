@@ -1,0 +1,19 @@
+#!/bin/sh
+
+OS=`uname`
+
+if [ $OS = "Darwin" ]; then
+  KINDLE=/Volumes/Kindle/
+else
+  KINDLE=/media/Kindle
+fi 
+
+SYNC=$HOME/Dropbox/doc/kindle/
+FIFO=${1:-$SYNC}
+
+if [ -d $KINDLE ]; then
+  unison -fat $KINDLE $SYNC
+else
+  echo "Kindle not mounted"
+fi
+
