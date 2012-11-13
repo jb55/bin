@@ -1,1 +1,2 @@
-switchghc/switch_ghc
+#!/bin/sh
+sudo /home/jb55/bin/brent switch -s /usr/local/stow $@
