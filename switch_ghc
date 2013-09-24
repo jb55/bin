@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo /home/jb55/bin/brent switch -s /usr/local/stow $@
+sudo $HOME/bin/brent switch -s /usr/local/stow $@
