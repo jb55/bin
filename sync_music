@@ -1,2 +1,2 @@
 #!/bin/bash
-rsync -ravP --modify-window=1 ~/Music/iTunes/iTunes\ Media/ /Volumes/NO\ NAME/iTunes/iTunes\ Media/
+rsync -ravP --delete --modify-window=1 ~/Music/iTunes/iTunes\ Media/Music/ /Volumes/NO\ NAME/Music/
