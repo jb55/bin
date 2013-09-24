@@ -4,5 +4,5 @@ b="0"
 for p in `ghc-pkg check $* 2>&1  | grep problems | awk '{print $6}' | sed -e 's/:$//'`
 do
     echo unregistering $p; ghc-pkg $* unregister $p;
-    cabal install $p; b="1"
+    cabal -j12 install $p; b="1"
 done
