@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "$@" > /tmp/cmds
+CUR="`pwd`"
+echo "cd $PWD && $@" > /tmp/cmds
