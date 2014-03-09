@@ -1,6 +1,21 @@
-#!/bin/sh
+#!/bin/bash
+
+has_cmd() { command -v $1 >/dev/null 2>&1; }
+NOTIFY=$(has_cmd terminal-notifier && echo "terminal-notifier -message" || \
+         has_cmd notify-send && echo "notify-send --icon=dialog-information" || \
+         echo "")
+
+notify() {
+  if [ ! -z "$NOTIFY" ]; then
+    $NOTIFY "$1"
+  fi
+}
+
 FIFO=${1:-"/tmp/cmds"}
 mkfifo $FIFO &> /dev/null
-while :; do bash < $FIFO && \
-  (terminal-notifier -message "Command succeeded"; echo "== OK ==") || \
-  (terminal-notifier -message "Command failed"; echo "!! ERR !!") done
+while :; do
+  CMD=$(<$FIFO)
+  echo "$CMD" | bash && \
+    (notify "OK: '$CMD'"; echo "== OK ==") || \
+    (notify "FAIL: '$CMD'"; echo "!! ERR !!")
+done
