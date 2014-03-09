@@ -16,6 +16,6 @@ mkfifo $FIFO &> /dev/null
 while :; do
   CMD=$(<$FIFO)
   echo "$CMD" | bash && \
-    (notify "OK: '$CMD'"; echo "== OK ==") || \
-    (notify "FAIL: '$CMD'"; echo "!! ERR !!")
+    (notify "OK: '$CMD'"; echo "== OK == | $CMD") || \
+    (notify "FAIL: '$CMD'"; echo "!! ERR !! | $CMD")
 done
