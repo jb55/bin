@@ -8,7 +8,7 @@ else
   KINDLE=/media/Kindle
 fi 
 
-SYNC=$HOME/Dropbox/doc/paperwhite/
+SYNC=$HOME/Dropbox/doc/kindle/
 FIFO=${1:-$SYNC}
 
 if [ -d $KINDLE ]; then
