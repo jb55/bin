@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var request = require('request');
+var stdin = require('stdin');
+
+var url = process.argv[2]
+stdin(function(str){
+  var data = { form: JSON.parse(str) };
+  request.post(url, data, function(err, resp, body){
+    if (err) console.error(err);
+    console.log(body);
+  });
+});
+
