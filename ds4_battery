@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+status=$(cat /sys/class/power_supply/sony_controller_battery*/status)
+
 cat /sys/class/power_supply/sony_controller_battery*/capacity \
   | tr '\n' '%' \
   | sed "s/%/% /"
+
+[[ "$status" = "Charging" ]] && echo -n "+" || echo -n "-"
