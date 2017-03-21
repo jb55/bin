@@ -1,0 +1,79 @@
+#!/usr/bin/env sh
+
+notmuchcmd () {
+  echo "notmuch" "$@"
+  $(notmuch "$@")
+}
+
+# k9mail
+notmuchcmd tag -inbox folder:".Archive"
+
+# thunderbird I guess?
+notmuchcmd tag -inbox folder:".Archives.2017"
+
+# me
+notmuchcmd tag +to-me to:jackbox55@gmail.com and not tag:to-me
+notmuchcmd tag +to-me to:bill@monstercat.com and not tag:to-me
+notmuchcmd tag +to-me to:bill@monster.cat and not tag:to-me
+notmuchcmd tag +to-me to:bill@casarin.me and not tag:to-me
+notmuchcmd tag +to-me to:bill@casarin.ca and not tag:to-me
+notmuchcmd tag +to-me to:will@casarin.ca and not tag:to-me
+notmuchcmd tag +to-me to:will@casarin.me and not tag:to-me
+notmuchcmd tag +to-me to:william@casarin.ca and not tag:to-me
+notmuchcmd tag +to-me to:william@casarin.me and not tag:to-me
+
+notmuchcmd tag +star to:jackbox55+star@gmail.com
+notmuchcmd tag +star to:jackbox55+s@gmail.com
+
+notmuchcmd tag +family from:casarin.ca and not tag:to-me
+notmuchcmd tag +family from:casarin.me and not tag:to-me
+notmuchcmd tag -family tag:to-me
+
+# annoying
+notmuchcmd tag -inbox +newsletter from:newsletters.microsoft.com
+notmuchcmd tag -inbox +brandalliance from:mail@brandalliancelounge.com
+notmuchcmd tag -inbox +newsletter from:freescale
+notmuchcmd tag -inbox from:philphys.phil.elte.hu
+notmuchcmd tag -inbox from:everything-list.googlegroups.com
+notmuchcmd tag -inbox from:codesite-noreply@google.com
+notmuchcmd tag -inbox from:getsatisfaction.com
+notmuchcmd tag -inbox +deleted from:post@tinyportal.net
+notmuchcmd tag -inbox +deleted from:yahoo.com.hk
+notmuchcmd tag -inbox +spam folder:".Spam"
+
+# work
+notmuchcmd tag +alerts folder:".Alerts"
+notmuchcmd tag +alerts +circleci from:builds@circleci.com
+notmuchcmd tag +alerts +trello from:trello
+notmuchcmd tag +alerts +sentry from:noreply@md.getsentry.com or from:noreply@outbound.getsentry.com
+notmuchcmd tag +monstercat to:bill@monstercat.com
+notmuchcmd tag +monstercat +connect to:monstercat/connect
+
+# old stuff
+notmuchcmd tag +list -forums tag:forums
+notmuchcmd tag -nix tag:nixpkgs
+
+# forums
+notmuchcmd tag +ats +list to:ats-lang-users
+notmuchcmd tag +cabal2nix +nix +list to:NixOS/cabal2nix
+notmuchcmd tag +ccnx +list to:ccnx
+notmuchcmd tag +component +list to:componentjs.googlegroups.com
+notmuchcmd tag +craigslist +list to:reply.craigslist.org
+notmuchcmd tag +crypto +list to:cryptography.metzdowd.com
+notmuchcmd tag +haskell +cabal-dev +list to:cabal-devel.haskell.org
+notmuchcmd tag +haskell +commercial-haskell +list to:commercialhaskell.googlegroups.com
+notmuchcmd tag +haskell +ghc-devs +list to:ghc-devs.haskell.org
+notmuchcmd tag +haskell +haskell-cafe +list to:haskell-cafe.haskell.org
+notmuchcmd tag +haskell +haskell-libraries +list to:libraries.haskell.org or to:libraries@haskell.org
+notmuchcmd tag +haskell +list to:haskell.haskell.org
+notmuchcmd tag +haskell +pipes +list to:haskell-pipes.googlegroups.com
+notmuchcmd tag +haskell +streaming to:streaming-haskell.googlegroups.com
+notmuchcmd tag +icn +list folder:".Lists.icn"
+notmuchcmd tag +ndn +list to:ndn-interest
+notmuchcmd tag +nix-dev +nix +list to:nix-dev@lists.science.uu.nl
+notmuchcmd tag +nixpkgs +list to:nixpkgs@noreply.github.com
+notmuchcmd tag +otr +list to:otr-users.lists.cypherpunks.ca
+notmuchcmd tag +redo +list to:redo-list.googlegroups.com
+notmuchcmd tag +shen +list to:qilang
+notmuchcmd tag +spacemacs +list to:spacemacs.syl20bnr.github.com
+notmuchcmd tag +webvr +vr +list to:web-vr-discuss
