@@ -30,6 +30,8 @@ notmuchcmd tag +family from:casarin.me and not tag:to-me
 notmuchcmd tag -family tag:to-me
 
 # annoying
+notmuchcmd tag -inbox folder:".Updates"
+notmuchcmd tag -inbox folder:".Alerts"
 notmuchcmd tag -inbox +newsletter from:newsletters.microsoft.com
 notmuchcmd tag -inbox +brandalliance from:mail@brandalliancelounge.com
 notmuchcmd tag -inbox +newsletter from:freescale
@@ -57,6 +59,8 @@ notmuchcmd tag -nix tag:nixpkgs
 notmuchcmd tag +ats +list to:ats-lang-users
 notmuchcmd tag +cabal2nix +nix +list to:NixOS/cabal2nix
 notmuchcmd tag +ccnx +list to:ccnx
+notmuchcmd tag +elm +list folder:".Lists.elm"
+notmuchcmd tag +bitcoin +list folder:".Lists.bitcoin"
 notmuchcmd tag +component +list to:componentjs.googlegroups.com
 notmuchcmd tag +craigslist +list to:reply.craigslist.org
 notmuchcmd tag +crypto +list to:cryptography.metzdowd.com
@@ -75,5 +79,8 @@ notmuchcmd tag +nixpkgs +list to:nixpkgs@noreply.github.com
 notmuchcmd tag +otr +list to:otr-users.lists.cypherpunks.ca
 notmuchcmd tag +redo +list to:redo-list.googlegroups.com
 notmuchcmd tag +shen +list to:qilang
-notmuchcmd tag +spacemacs +list to:spacemacs.syl20bnr.github.com
+notmuchcmd tag +spacemacs +list to:spacemacs@noreply.github.com
 notmuchcmd tag +webvr +vr +list to:web-vr-discuss
+
+# except if someone mentions me
+notmuchcmd tag +flagged tag:list and jb55
