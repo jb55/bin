@@ -17,6 +17,11 @@ notmuchcmd tag -inbox folder:".Archives.2017"
 # lobsters
 notmuchcmd tag +lobsters +busy folder:".Lists.lobsters"
 
+# youtube
+notmuchcmd tag +youtube folder:".YouTube"
+notmuchcmd tag +talk from:"Talks at Google" and tag:youtube
+notmuchcmd tag +lecture from:"Khan Academy" and tag:youtube
+
 # promote noisy lobster stuff to list
 notmuchcmd tag -busy +list +haskell tag:lobsters and subject:haskell
 notmuchcmd tag -busy +list +icn tag:lobsters and subject:icn
@@ -58,7 +63,7 @@ notmuchcmd tag +haskell \
 notmuchcmd tag +gamedev from:"Unity Technologies Blog"
 notmuchcmd tag +prog +lisp from:"Peter Norvig"
 notmuchcmd tag +startup from:"Paul Graham"
-notmuchcmd tag +lectures from:"Video Lectures"
+notmuchcmd tag +talk from:"Video Lectures"
 notmuchcmd tag +js from:"Vjeux"
 notmuchcmd tag +cli +tips from:"UNIX Command Line"
 notmuchcmd tag +go from:"Planet 5"
