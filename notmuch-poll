@@ -54,6 +54,11 @@ notmuchcmd tag +elm \
   not tag:elm and \
   from:"Newest questions tagged elm"
 
+notmuchcmd tag +emacs \
+  tag:inbox and \
+  not tag:emacs and \
+  from:emacs
+
 notmuchcmd tag +question +so \
   tag:inbox and \
   not tag:so and \
