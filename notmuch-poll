@@ -49,6 +49,16 @@ notmuchcmd tag +nix \
   from:"Thoughts about computer technologies" or \
   from:"NixOS Planet"
 
+notmuchcmd tag +elm \
+  tag:inbox and \
+  not tag:elm and \
+  from:"Newest questions tagged elm"
+
+notmuchcmd tag +question +so \
+  tag:inbox and \
+  not tag:so and \
+  from:"Stack Overflow"
+
 notmuchcmd tag +elec +busy tag:inbox and not tag:elec and from:"Adafruit Industries"
 notmuchcmd tag +python tag:inbox and not tag:python and from:"Neopythonic"
 notmuchcmd tag +physics \
