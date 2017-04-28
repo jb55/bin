@@ -69,8 +69,7 @@ notmuchcmd tag +rust \
 notmuchcmd tag +emacs \
   tag:inbox and \
   not tag:emacs and \
-  from:emacs or \
-
+  from:emacs
 
 notmuchcmd tag +question +so \
   tag:inbox and \
