@@ -25,6 +25,8 @@ notmuchcmd tag -busy +ccnx tag:inbox and not tag:ccnx and '(tag:lobsters or tag:
 notmuchcmd tag -busy +nix tag:inbox and not tag:nix and '(tag:lobsters or tag:hn)' and subject:nix
 notmuchcmd tag -busy +spacemacs tag:inbox and not tag:spacemacs and '(tag:lobsters or tag:hn)' and subject:spacemacs
 
+notmuchcmd tag +emacs +emacs-dev +list tag:inbox and folder:".Lists.emacs"
+notmuchcmd tag +guix +list tag:inbox and folder:".Lists.guix"
 notmuchcmd tag +arxiv +busy tag:inbox and not tag:arxiv and folder:".Arxiv"
 notmuchcmd tag +ml tag:inbox and not tag:ml and tag:arxiv and subject:"stat.ML"
 
@@ -49,15 +51,26 @@ notmuchcmd tag +nix \
   from:"Thoughts about computer technologies" or \
   from:"NixOS Planet"
 
+notmuchcmd tag +emacs +so +busy +question \
+  tag:inbox and \
+  not tag:emacs and \
+  from:"Emacs Stack Exchange"
+
 notmuchcmd tag +elm \
   tag:inbox and \
   not tag:elm and \
   from:"Newest questions tagged elm"
 
+notmuchcmd tag +rust \
+  tag:inbox and \
+  not tag:rust and \
+  from:rust
+
 notmuchcmd tag +emacs \
   tag:inbox and \
   not tag:emacs and \
-  from:emacs
+  from:emacs or \
+
 
 notmuchcmd tag +question +so \
   tag:inbox and \
@@ -155,7 +168,7 @@ notmuchcmd tag +spacemacs +busy +list to:spacemacs@noreply.github.com and tag:in
 notmuchcmd tag +webvr +vr +list to:web-vr-discuss and tag:inbox
 
 # except if someone mentions me
-notmuchcmd tag +flagged tag:inbox and tag:list and jb55
+notmuchcmd tag +flagged -busy tag:inbox and tag:list and \(jb55 or tag:to-me\)
 
 # remove annoying from inbox, should be last in file
 notmuchcmd tag -inbox tag:inbox and tag:alert or tag:update
