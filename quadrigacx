@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl -sL 'https://api.quadrigacx.com/v2/ticker' | jq -r .last
