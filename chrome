@@ -1,0 +1,3 @@
+#! /bin/sh
+
+chromium --profile-path=Default
