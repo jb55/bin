@@ -1,1 +1,1 @@
-gpg --no-default-keyring --secret-keyring /dev/null -a --list-only $@
+gpg2 --list-packets $@
