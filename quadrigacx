@@ -1,2 +1,3 @@
-#!/usr/bin/env bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p jq
 curl -sL 'https://api.quadrigacx.com/v2/ticker' | jq -r .last
