@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+printf -v ARGS "%q " "$@"
+
+choose () {
+  ifconfig | grep 192.168.86 >/dev/null \
+    && printf "notmuch-local\n" \
+    || printf "notmuch\n"
+}
+
+remote="$(choose)"
+
+exec ssh "$remote" notmuch ${ARGS}
