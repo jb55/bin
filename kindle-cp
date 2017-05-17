@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+DEST="$HOME/Dropbox/doc/kindle/documents"
+KINDLE="$(kindle-dir)"
+
+if [ -d "$KINDLE" ]; then
+    DEST="$KINDLE"
+fi
+
+printf "copying to '%s'...\n" "$KINDLE"
+for file in "$@"
+do
+    printf "copying '%s'\n" "$file"
+done
+
+cp "$@" "$DEST"
