@@ -1,0 +1,54 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash coreutils
+
+if [ "$#" -ne 1 ]; then
+    printf "usage: kindle-email <some-attachment.pdf>\n"
+    exit 1
+fi
+
+
+get_mimetype(){
+    file --mime-type "$1" | sed 's/.*: //'
+}
+
+file="$1"
+from="jb55@jb55.com"
+to="jb55@free.kindle.com"
+subject="kindle-email test"
+body="hi"
+boundary="=-=-=-=-=-="
+name="$(basename "$file")"
+
+
+# Build headers
+{
+
+cat <<EOF
+From: $from
+To: $to
+Subject: $subject
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="$boundary"
+
+--${boundary}
+Content-Type: text/plain; charset="UTF-8"
+
+$body
+
+EOF
+
+mimetype=$(get_mimetype "$file")
+
+cat <<EOF
+--${boundary}
+Content-Type: $mimetype; charset="UTF-8"; name="$name"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="$name"
+
+EOF
+
+base64 "$file"
+
+printf '%s\n' "--${boundary}--"
+
+} | sendmail -t -oi   # one may also use -f here to set the envelope-from
