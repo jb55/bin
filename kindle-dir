@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ "$OS" == "Darwin" ]; then
+    printf "/Volumes/Kindle/\n"
+else
+    printf "/run/media/jb55/Kindle/\n"
+fi
