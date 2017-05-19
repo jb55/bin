@@ -5,8 +5,8 @@ OS=`uname`
 if [ $OS = "Darwin" ]; then
   KINDLE=/Volumes/Kindle/
 else
-  KINDLE=/media/Kindle
-fi 
+  KINDLE=/run/media/jb55/Kindle/
+fi
 
 SYNC=$HOME/Dropbox/doc/kindle/
 FIFO=${1:-$SYNC}
