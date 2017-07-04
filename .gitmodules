@@ -1,6 +1,4 @@
 [submodule "pickdrop"]
-	path = pickdrop
-	url = https://github.com/iaindooley/pickdrop.git
 [submodule "curlpaste"]
 	path = curlpaste
 	url = git://github.com/Kiwi/curlpaste.git
