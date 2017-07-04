@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-SS_DIR="${SHARE_SS_DIR:-$HOME/Dropbox/img/ss}"
-scrot "${SS_DIR}/%b%d-%H%M%S.png" "$@"
-export SHARE_SS_DIR="$SS_DIR"
-share_last_ss | xclip
