@@ -13,10 +13,11 @@ notmuchcmd tag +from-me from:bill@monstercat.com and tag:inbox and not tag:from-
 notmuchcmd tag +royalties '(from:royalties@monstercat.com or to:royalties@monstercat.com)' and tag:inbox and not tag:royalties
 
 # noise
+notmuchcmd tag +events +noise to:events@monstercat.com and tag:inbox and not tag:events
 notmuchcmd tag +sentry +noise +error from:noreply@md.getsentry.com and tag:inbox and not tag:sentry
 notmuchcmd tag +bugsnag +noise +error from:notifications@bugsnag.com and tag:inbox and not tag:bugsnag
 notmuchcmd tag +slack +update +noise from:feedback@slack.com and tag:inbox and not tag:slack
-notmuchcmd tag +sendgrid +update +noise from:"SendGrid Support" and tag:inbox and not tag:sendgrid
+notmuchcmd tag +sendgrid +update +noise from:sendgrid.com and tag:inbox and not tag:sendgrid
 notmuchcmd tag +dev +clubhouse +update from:robot@clubhouse.io and tag:inbox and not tag:clubhouse
 notmuchcmd tag +noise +update from:"Clubhouse" and tag:inbox and not tag:clubhouse
 notmuchcmd tag +itunes +noise +update subject:"iTunes Weekly Upload Report" and tag:inbox and not tag:itunes
@@ -24,7 +25,7 @@ notmuchcmd tag +noise subject:"spam report"
 
 # important stuff
 notmuchcmd tag +dev +github from:notifications@github.com and tag:inbox and not tag:github
-notmuchcmd tag +internal from:monstercat.com and not tag:internal #and tag:inbox
+notmuchcmd tag +internal from:monstercat.com and not tag:internal and tag:inbox
 notmuchcmd tag +flagged \
       tag:internal and \
       tag:to-me    and \
