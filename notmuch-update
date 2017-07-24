@@ -1,2 +1,2 @@
 #!/run/current-system/sw/bin/bash
-muchsync charon
+muchsync -C ~/.notmuch-config-personal notmuch
