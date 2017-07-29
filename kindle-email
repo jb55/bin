@@ -1,21 +1,27 @@
+#!/usr/bin/env bash
 
-if [ "$#" -ne 1 ]; then
-    printf "usage: kindle-email <some-attachment.pdf>\n"
-    exit 1
-fi
-
+set -e
 
 get_mimetype(){
     file --mime-type "$1" | sed 's/.*: //'
 }
 
+usage () {
+    printf "kindle-email <file.pdf>\n" 1>&2
+    exit 1
+}
+
+[ -z "$1" ] && usage
+
 file="$1"
-from="jb55@jb55.com"
+filename="$2"
+from="jackbox55@gmail.com"
 to="jb55@free.kindle.com"
 subject="kindle-email test"
 body="hi"
 boundary="=-=-=-=-=-="
-name="$(basename "$file")"
+name="${filename:-$(basename "$file")}"
+
 
 
 # Build headers
@@ -39,7 +45,7 @@ mimetype=$(get_mimetype "$file")
 
 cat <<EOF
 --${boundary}
-Content-Type: application/octet-stream; charset="UTF-8"; name="$name"
+Content-Type: ${mimetype}; charset="UTF-8"; name="$name"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="$name"
 
@@ -49,4 +55,5 @@ base64 "$file"
 
 printf '%s\n' "--${boundary}--"
 
-} | sendmail -f jb55@jb55.com -oi -t # one may also use -f here to set the envelope-from
+} | sendmail --read-envelope-from -oi -t
+
