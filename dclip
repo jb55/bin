@@ -1,0 +1,2 @@
+#!/bin/sh
+xcmenu --list | awk '!seen[$0]++' | dmenu -p clip -l 30 | tr -d '\n$'

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+/home/jb55/.nix-profile/bin/dmenu -fn 'Inconsolata-14' "$@"
