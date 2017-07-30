@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+usage () {
+    printf "usage: themeswitch <dark|light>\n"
+    exit 1
+}
+
+theme="$1"
+
+[ -z "$theme" ] && usage
+[ "$theme" != "dark" ] && [ "$theme" != "light" ] && usage
+
+termcolor "$theme" &
+switch-term-themes "$theme"
+
+if [ "$theme" == "light" ]; then
+  feh --bg-fill ~/var/img/wallpapers/wireframe-deer-white.jpg
+else
+  feh --bg-fill ~/var/img/wallpapers/wireframe-deer.jpg
+fi
+
+ 
