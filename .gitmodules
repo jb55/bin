@@ -1,4 +1,3 @@
-[submodule "pickdrop"]
 [submodule "curlpaste"]
 	path = curlpaste
 	url = git://github.com/Kiwi/curlpaste.git
