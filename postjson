@@ -1,14 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/env bash
 
-var request = require('request');
-var stdin = require('stdin');
+[ -z "$1" ] && printf "usage: %s <url> [curl_opts...] < jsondata\n" $(basename $0) && exit 1
 
-var url = process.argv[2]
-stdin(function(str){
-  var data = { form: JSON.parse(str) };
-  request.post(url, data, function(err, resp, body){
-    if (err) console.error(err);
-    console.log(body);
-  });
-});
+url="$1"
+shift
 
+curl -sL -X POST -H 'Content-Type: application/json' -d @- "$@" "$url"
