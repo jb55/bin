@@ -7,7 +7,7 @@ get_mimetype(){
 }
 
 usage () {
-    printf "kindle-email <file.pdf>\n" 1>&2
+    printf "kindle-email <file.pdf> [filename.pdf]\n" 1>&2
     exit 1
 }
 

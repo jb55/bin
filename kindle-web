@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+[ -z "$1" ] && printf "usage: %s <url>\n" "$(basename "$0")" && exit 1
+
+export EXT=html
+curl -sL "$1" | kindle-send
