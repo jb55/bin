@@ -2,5 +2,5 @@
 
 [ -z "$1" ] && printf "usage: %s <url>\n" "$(basename "$0")" && exit 1
 
-export EXT=html
+export EXT=txt
 curl -sL "$1" | kindle-send
