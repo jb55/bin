@@ -1,2 +1,2 @@
 #!/bin/sh
-curl wttr.in/vancouver
+exec curl wttr.in/vancouver
