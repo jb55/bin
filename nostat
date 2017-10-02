@@ -1,39 +1,52 @@
 #!/usr/bin/env bash
 
+services="home-email-notifier work-email-notifier email-notify-switcher"
+
 export SYSTEMD_COLORS=1
 
-status () {
-  systemctl --user --no-pager -n0 -o short status "$1"-email-notifier | awk 'NR==1 || /Active/'
+ctl () {
+    printf "%s-ing %s-email-notifier\n" "$1" "$2" >&2
+    systemctl --user "$1" "$2"
 }
 
-ctl () {
-    printf "%s-ing %s-email-notifier\n\n" "$1" "$2" >&2
-    systemctl --user "$1" "$2"-email-notifier
-}
+if [ $# -eq 0 ]
+then
+    printf "nostat [ARGS].. - ARGS: {++,+,-}{w,h,s}, ++restart, +start, -stop\n"
+fi
 
 for var in "$@"
 do
     case $var in
         +w)
-            ctl start work
+            ctl start work-email-notifier
             ;;
         ++w)
-            ctl restart work
+            ctl restart work-email-notifier
             ;;
         -w)
-            ctl stop work
+            ctl stop work-email-notifier
+            ;;
+        +s)
+            ctl start email-notify-switcher
+            ;;
+        ++s)
+            ctl restart email-notify-switcher
+            ;;
+        -s)
+            ctl stop email-notify-switcher
             ;;
         +h)
-            ctl start home
+            ctl start home-email-notifier
             ;;
         ++h)
-            ctl restart home
+            ctl restart home-email-notifier
             ;;
         -h)
-            ctl stop home
+            ctl stop home-email-notifier
             ;;
      esac
 done
 
-status work
-status home
+printf "\n"
+
+systemctl --user --no-pager -n0 status $services | awk '/ - /' | sed 's,\.service.*,,g'
