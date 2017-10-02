@@ -1,0 +1,3 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p openssl
+openssl s_client -connect "$1":443 -servername "$1"
