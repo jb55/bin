@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh charon "r2e add $1 $2"
+ssh charon "r2e add $1 '$2'"
