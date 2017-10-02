@@ -2,7 +2,7 @@
 
 notmuchcmd () {
   echo "notmuch" "$@"
-  $(notmuch "$@")
+  $(/home/jb55/bin/notmuch-work "$@")
 }
 
 # util
