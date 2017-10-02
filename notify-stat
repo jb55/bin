@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+export SYSTEMD_COLORS=1
+
+status () {
+  systemctl --user --no-pager -n0 -o short status "$1"-email-notifier | awk 'NR==1 || /Active/'
+}
+
+ctl () {
+    printf "%s-ing %s-email-notifier\n\n" "$1" "$2" >&2
+    systemctl --user "$1" "$2"-email-notifier
+}
+
+for var in "$@"
+do
+    case $var in
+        +w)
+            ctl start work
+            ;;
+        ++w)
+            ctl restart work
+            ;;
+        -w)
+            ctl stop work
+            ;;
+        +h)
+            ctl start home
+            ;;
+        ++h)
+            ctl restart home
+            ;;
+        -h)
+            ctl stop home
+            ;;
+     esac
+done
+
+status work
+status home
