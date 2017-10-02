@@ -24,6 +24,7 @@ notmuchcmd tag +itunes +noise +update subject:"iTunes Weekly Upload Report" and 
 notmuchcmd tag +noise subject:"spam report"
 
 # important stuff
+notmuchcmd tag +error from:systemd and subject:Failed and not tag:systemd and tag:inbox
 notmuchcmd tag +dev +github from:notifications@github.com and tag:inbox and not tag:github
 notmuchcmd tag +internal from:monstercat.com and not tag:internal and tag:inbox
 notmuchcmd tag +flagged \
