@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pay="${3:-15}"
+exec datediff "$1" "$2" -f %M | xargs printf "%s/(60/$pay)\n" | ratio | bc -l
