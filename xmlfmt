@@ -1,2 +1,2 @@
 #!/bin/sh
-xmllint --format "$@"
+exec xmllint --format "$@"
