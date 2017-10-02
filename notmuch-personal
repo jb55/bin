@@ -1,2 +1,2 @@
 #!/bin/sh
-notmuch --config=$HOME/.notmuch-config-personal "$@"
+exec notmuch "$@"
