@@ -21,11 +21,11 @@ Still very slow, possibly write a native  libxml2 app?
   </xsl:template>
   
   <xsl:template match="*">
-    (<xsl:choose><xsl:when test="@*">("<xsl:value-of select="name()"/>"<xsl:apply-templates select="@*"/>)</xsl:when>
-      <xsl:otherwise>"<xsl:value-of select="name()"/>"</xsl:otherwise></xsl:choose><xsl:apply-templates/>)
+    (<xsl:choose><xsl:when test="@*">(<xsl:value-of select="name()"/><xsl:apply-templates select="@*"/>)</xsl:when>
+      <xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise></xsl:choose><xsl:apply-templates/>)
   </xsl:template>
   
   <xsl:template match="@*">
-    ("<xsl:value-of  select="name()"/>". "<xsl:value-of select="."/>")
+    (<xsl:value-of  select="name()"/> . "<xsl:value-of select="."/>")
   </xsl:template>
 </xsl:stylesheet>
