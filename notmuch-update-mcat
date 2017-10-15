@@ -10,7 +10,7 @@ notmuchcmd tag +to-me to:bill@monstercat.com and tag:inbox and not tag:to-me
 notmuchcmd tag +from-me from:bill@monstercat.com and tag:inbox and not tag:from-me
 
 # labels
-notmuchcmd tag +royalties '(from:royalties@monstercat.com or to:royalties@monstercat.com)' and tag:inbox and not tag:royalties
+notmuchcmd tag +filed +royalties '(from:royalties@monstercat.com or to:royalties@monstercat.com)' and tag:inbox and not tag:royalties
 
 # noise
 notmuchcmd tag +events +noise to:events@monstercat.com and tag:inbox and not tag:events
