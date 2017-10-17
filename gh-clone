@@ -32,8 +32,6 @@ dir="$dest/$repo"
 
 [ -d "$dir" ] && already_exists "$owner/$repo" "$dir"
 
-printf "%s\n" "$dir" >&2
-
 mkdir -p "$dest"
 cd "$dest"
 git clone "gh:$owner/$repo"
