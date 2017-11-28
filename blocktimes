@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+blocks=$(bitcoin-cli getblockcount)
+
+n=${1:-100}
+n1=$((blocks - n))
+
+for block in $(seq $n1 $blocks)
+do
+  hash=$(bitcoin-cli getblockhash "$block")
+  bitcoin-cli getblock "$hash" 1 | jq .time
+done \
+  | sed '$!N;s/\n/,/' \
+  | tee /tmp/blocktimes \
+  | sed -e 's/\(.*\),\(.*\)/datediff -f %S @\1 @\2/g' \
+  | tee /tmp/blocktimes2 \
+  | sh \
+  | awk '{ total += $1 } END { print (total/NR)/60 }'

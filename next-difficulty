@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+exec bitcoin-cli getblockcount \
+  | xargs printf "2016 - (%d %% 2016)\n" \
+  | bc
