@@ -15,7 +15,7 @@ notmuchcmd tag +filed +royalties '(from:royalties@monstercat.com or to:royalties
 # noise
 notmuchcmd tag +events +noise to:events@monstercat.com and tag:inbox and not tag:events
 notmuchcmd tag +sentry +noise +error from:noreply@md.getsentry.com and tag:inbox and not tag:sentry
-notmuchcmd tag +bugsnag +noise +error from:notifications@bugsnag.com and tag:inbox and not tag:bugsnag
+notmuchcmd tag +bugsnag +noise +error from:bugsnag.com and tag:inbox and not tag:bugsnag
 notmuchcmd tag +slack +update +noise from:feedback@slack.com and tag:inbox and not tag:slack
 notmuchcmd tag +sendgrid +update +noise from:sendgrid.com and tag:inbox and not tag:sendgrid
 notmuchcmd tag +dev +clubhouse +update from:robot@clubhouse.io and tag:inbox and not tag:clubhouse
