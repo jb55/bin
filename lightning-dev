@@ -1,0 +1,6 @@
+#!/bin/sh
+exec nix-shell -p \
+  haskellEnv gdb sqlite \
+  autoconf git gcc libtool gmp sqlite python python3 autoconf autogen automake \
+  'python3.withPackages (p: with p; [bitcoinlib])' \
+  valgrind asciidoc "$@"
