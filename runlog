@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec systemctl start cookie-bot && journalctl -fu cookie-bot
+systemctl restart "$@"; journalctl -fu "$@"

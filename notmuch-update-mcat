@@ -27,9 +27,13 @@ notmuchcmd tag +noise subject:"spam report"
 notmuchcmd tag +error from:systemd and subject:Failed and not tag:systemd and tag:inbox
 notmuchcmd tag +dev +github from:notifications@github.com and tag:inbox and not tag:github
 notmuchcmd tag +internal from:monstercat.com and not tag:internal and tag:inbox
-notmuchcmd tag +flagged \
-      tag:internal and \
-      tag:to-me    and \
-  not tag:flagged  and \
-  not tag:noise    and \
-  not tag:from-me  and tag:inbox
+
+# notmuchcmd tag +flagged \
+#       tag:internal and \
+#       tag:to-me    and \
+#   not tag:flagged  and \
+#   not tag:noise    and \
+#   not tag:from-me  and tag:inbox
+
+# alerts
+notmuchcmd tag +flagged from:UPS or \(from:ari and from:monstercat\)
