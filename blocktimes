@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
-blocks=$(bitcoin-cli getblockcount)
+net=${BTCNET:-mainnet}
 
-n=${1:-100}
+CLI="bitcoin-cli -$BTCNET"
+
+blocks=$($CLI getblockcount)
+
+n=${1:-99}
 n1=$((blocks - n))
 
 for block in $(seq $n1 $blocks)
 do
-  hash=$(bitcoin-cli getblockhash "$block")
-  bitcoin-cli getblock "$hash" 1 | jq .time
+  hash=$($CLI getblockhash "$block")
+  $CLI getblock "$hash" 1 | jq .time
 done \
   | sed '$!N;s/\n/,/' \
   | tee /tmp/blocktimes \
