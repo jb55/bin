@@ -1,4 +1,22 @@
 #!/usr/bin/env bash
-exec bitcoin-cli getblockcount \
-  | xargs printf "2016 - (%d %% 2016)\n" \
-  | bc
+fmt="--rfc-3339=seconds"
+times=$(blocktimes 49)
+blocks=$(bitcoin-cli "$@" getblockcount)
+prev=$(bc <<<"$blocks % 2016")
+prevblock=$((blocks - prev))
+prevdate=$(bitcoin-cli getblockhash $prevblock | xargs bitcoin-cli getblock | jq .time | xargs -I{} date $fmt -d@{})
+next=$((2016 - prev))
+timesnext=$(bc <<<"$times * $next")
+timesnext=${timesnext%.*}
+nextdate="$(date -d "now + $timesnext minutes" $fmt)"
+now="$(date --rfc-3339=seconds)"
+nexttime=$(datediff -f '%dd %Hh' "$now" "$nextdate")
+prevtime=$(datediff -f '%dd %Hh' "$now" "$prevdate")
+printf "prev\t%s\t%s\t%s\nnext\t%s\t %s\t%s\nblocktimes(50)\t%sm\n" \
+       "$prev" \
+       "$prevtime" \
+       "$prevdate" \
+       "$next" \
+       "$nexttime" \
+       "$nextdate" \
+       "$times" | column -t -s $'\t'

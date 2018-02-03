@@ -1,2 +1,2 @@
 #!/bin/sh
-exec bitcoin-cli getmempoolinfo  | jq -r .bytes | nfmt
+exec bitcoin-cli "$@" getmempoolinfo  | jq -r .bytes | nfmt
