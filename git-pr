@@ -6,6 +6,6 @@ usage () {
 }
 [ -z "$1" ] && usage
 
-ref="${*:$#}"
-set -- "${@:1:$(($#-1))}"
+ref="$1"
+shift
 exec git log --reverse "$@" "refs/merge/origin/$ref^..refs/pull/origin/$ref"
