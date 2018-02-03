@@ -1,2 +1,2 @@
 #!/bin/sh
-exec bitcoin-cli getblockcount
+exec bitcoin-cli "$@" getblockcount
