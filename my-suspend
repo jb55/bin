@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# pause vms
+if type VBoxManage > /dev/null; then
+    VBoxManage controlvm razoredge pause
+fi
+
+systemctl suspend
