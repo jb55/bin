@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+peeps=$(cat <<EOP
+Australia/Lord_Howe,rusty
+CET,cdecker
+EET,ukraine
+EOP
+)
+
+while IFS=, read -r tz person
+do
+  d=$(TZ="$tz" date +'%a %F  %R')
+  printf "%s\t%s\n" "$person" "$d"
+done <<<"$peeps" | column -t -s $'\t'
