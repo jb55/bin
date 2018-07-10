@@ -2,5 +2,7 @@
 
 time=$(journalctl --user -n1 --no-pager --output=short-iso -u home-email-notifier | tail -n1  | cut -d " " -f1 | xargs -I{} date -d {} '+%F %R')
 
-printf "$time "
+diff=$(datediff --format="%Hh:%Mm" "$time" "$(date '+%F %R')")
+
+printf "$diff "
 journalctl --user -n1 --no-pager --output=cat -u home-email-notifier
