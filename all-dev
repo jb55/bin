@@ -1,0 +1,8 @@
+#!/bin/sh
+exec nix-shell -p \
+  haskellEnv gdb sqlite nodejs \
+  dotnet-sdk bison flex autoconf git clang libtool \
+  gmp tor zlib sqlite xorg.libX11.{man,dev} xorg.libXft \
+  autoconf autogen automake SDL2 mesa_glu \
+  'python3.withPackages (p: with p; [bitcoinlib])' \
+  valgrind asciidoc "$@"

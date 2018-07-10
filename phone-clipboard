@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+clipboard=$(phonectl clipboard)
+
+if [[ $clipboard = "GPhone clipboard: "* ]]; then
+  <<<$clipboard sed "s/^GPhone clipboard: //g"
+  exit 0
+fi
+ 
+printf "%s\n" "$clipboard" >&2
+exit 1
