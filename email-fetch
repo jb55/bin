@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-runlogu home-email-notifier
+sysctlu restart home-email-notifier
