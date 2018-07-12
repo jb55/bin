@@ -1,3 +1,10 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
-chromium --force-device-scale-factor=1.25
+OPTS=""
+
+if [ "$HOST" == "quiver" ]
+then
+    OPTS="--force-device-scale-factor=1.25"
+fi
+
+chromium "$OPTS" "$@"
