@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -m
 set -e
+pkill clipit || :
+nohup clipit &
 pkill twmnd || :
 nohup twmnd &
 pkill xbindkeys || :
