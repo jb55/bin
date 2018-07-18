@@ -6,7 +6,7 @@ slock &
 
 # pause vms
 if type VBoxManage > /dev/null; then
-    VBoxManage controlvm razoredge pause
+    VBoxManage controlvm razoredge pause || :
 fi
 
 systemctl suspend
