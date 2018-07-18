@@ -2,12 +2,14 @@
 
 VM=${1:-razoredge}
 
-set -e
-
 # pause vms
 if type VBoxManage > /dev/null; then
-    VBoxManage controlvm "$VM" savestate
-    notify-send "$VM saved"
+    if VBoxManage controlvm "$VM" savestate
+    then
+        notify-send "$VM saved"
+    else
+        notify-send "$VM already saved"
+    fi
 fi
 
-
+pkill VirtualBox
