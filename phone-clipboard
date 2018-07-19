@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
 
+set -e
+
+send_to_phone() {
+    phonectl copy:"$1"
+    notify-send "copied '$1' to phone"
+    exit 0
+}
+
+if [ ! -z "$1" ]
+then
+    send_to_phone "$@"
+fi
+
 clipboard=$(phonectl clipboard)
 
-if [[ $clipboard = "GPhone clipboard: "* ]]; then
-  <<<$clipboard sed "s/^GPhone clipboard: //g"
+if [[ "$clipboard" = "GPhone clipboard: "* ]]; then
+  <<<"$clipboard" sed "s/^GPhone clipboard: //g"
   exit 0
 fi
 
