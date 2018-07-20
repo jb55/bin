@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 exec nix-shell -p \
   haskellEnv gdb sqlite nodejs \
   dotnet-sdk bison flex autoconf git clang libtool \
