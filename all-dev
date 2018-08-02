@@ -3,6 +3,6 @@ exec nix-shell -p \
      haskellEnv gdb sqlite nodejs \
      dotnet-sdk libxml2 bison flex autoconf git clang libtool \
      gmp tor zlib sqlite xorg.libX11.{man,dev} xorg.libXft \
-     autoconf autogen elmPackages.elm automake haskell-tools SDL2 mesa_glu \
-     'python3.withPackages (p: with p; [bitcoinlib pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky])' \
-     valgrind asciidoc "$@"
+     autoconf autogen elmPackages.elm automake SDL2 mesa_glu \
+     'python3.withPackages (p: with p; [bitcoinlib pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
+     cppcheck valgrind asciidoc "$@"
