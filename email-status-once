@@ -4,5 +4,7 @@ time=$(journalctl --user -n1 --no-pager --output=short-iso -u home-email-notifie
 
 diff=$(datediff --format="%Hh:%Mm" "$time" "$(date '+%F %R')")
 
-printf "$diff "
+last_email=$(notmuch search --format=json --limit=1 --sort=newest-first date:today | jq -r '.[0].date_relative')
+
+printf "last email $last_email | fetched $diff ago | "
 journalctl --user -n1 --no-pager --output=cat -u home-email-notifier
