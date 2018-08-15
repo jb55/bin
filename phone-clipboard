@@ -3,12 +3,12 @@
 set -e
 
 send_to_phone() {
-    phonectl copy:"$1"
-    notify-send "copied '$1' to phone"
+    phonectl copy:"$@"
+    notify-send "copied '$@' to phone"
     exit 0
 }
 
-if [ ! -z "$1" ]
+if [ ! -z "$@" ]
 then
     send_to_phone "$@"
 fi
