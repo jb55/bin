@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+set -e
+
+export LPASS_HOME=${LPASS_HOME:-"$HOME"/.config/lpass}
+
+login() {
+  lpass login jackbox55@gmail.com
+}
+
+if [ ! -f "$LPASS_HOME"/session_privatekey ]
+then
+  login
+fi
+
 IFS=$'\n'
 # List all entries in LastPass vault into dmenu formatted as follows
 # Folder/subfolder/Name of Site [username at site] [id: id for lookup]
