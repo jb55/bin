@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+IFS=$'\n'
+# List all entries in LastPass vault into dmenu formatted as follows
+# Folder/subfolder/Name of Site [username at site] [id: id for lookup]
+entries=($(lpass ls --long \
+  | cut -d ' ' -f 3- \
+  | sed 's/\[username: /[/;s/\(.*\)\(\[.*\]\) \(\[.*\]\)/\1 \3 \2/')
+  )
+
+# Get id from dmenu user selection
+selid=$(printf '%s\n' "${entries[@]}" \
+  | dmenu -i -p 'LastPass' -l 7 \
+  | sed 's/^.*\[id: \([0-9]\{1,\}\)\].*$/\1/')
+
+# Password to clipboard
+lpass show --clip --password "$selid"
