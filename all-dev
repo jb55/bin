@@ -1,8 +1,34 @@
 #!/usr/bin/env bash
 exec nix-shell -p \
-     haskellEnv gdb sqlite nodejs \
-     dotnet-sdk glfw libxml2 bison flex autoconf git clang libtool \
-     gmp tor zlib sqlite xorg.libX11.{man,dev} xorg.libXft \
-     autoconf autogen elmPackages.elm automake SDL2 mesa_noglu \
-     'python3.withPackages (p: with p; [bitcoinlib pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
-     cppcheck valgrind asciidoc "$@"
+     asciidoc \
+     autoconf \
+     autogen \
+     automake \
+     bison \
+     clang \
+     cppcheck \
+     dotnet-sdk \
+     elmPackages.elm \
+     flex \
+     gdb \
+     git \
+     glfw \
+     gmp \
+     haskellEnv \
+     imagemagick \
+     librsvg \
+     libtool \
+     libxml2 \
+     mesa_noglu \
+     nodejs \
+     'python3.withPackages (p: with p; [bitcoinlib sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
+     qrencode \
+     SDL2 \
+     sqlite \
+     texlive.combined.scheme-full \
+     tor \
+     valgrind \
+     xorg.libX11.{man,dev} \
+     xorg.libXft \
+     zlib \
+     "$@"
