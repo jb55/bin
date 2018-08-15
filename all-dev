@@ -5,6 +5,7 @@ exec nix-shell -p \
      autogen \
      automake \
      bison \
+     cairo \
      clang \
      cppcheck \
      dotnet-sdk \
@@ -13,14 +14,18 @@ exec nix-shell -p \
      gdb \
      git \
      glfw \
+     glib \
      gmp \
+     gtk3 \
      haskellEnv \
      imagemagick \
+     libical \
      librsvg \
      libtool \
      libxml2 \
      mesa_noglu \
      nodejs \
+     pkgconfig \
      'python3.withPackages (p: with p; [bitcoinlib sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
      qrencode \
      SDL2 \
