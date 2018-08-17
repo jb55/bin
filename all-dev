@@ -30,7 +30,6 @@ exec nix-shell -p \
      qrencode \
      SDL2 \
      sqlite \
-     texlive.combined.scheme-full \
      tor \
      valgrind \
      xorg.libX11.{man,dev} \

@@ -26,5 +26,6 @@ selid=$(printf '%s\n' "${entries[@]}" \
   | dmenu -i -p 'LastPass' -l 7 \
   | sed 's/^.*\[id: \([0-9]\{1,\}\)\].*$/\1/')
 
-# Password to clipboard
+# Password username and password to clipboard
+lpass show --clip --user "$selid"
 lpass show --clip --password "$selid"

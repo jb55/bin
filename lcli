@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh monad-local lcli "$@"
+$HOME/dev/github/ElementsProject/lightning/cli/lightning-cli --lightning-dir $HOME/.lightning-bitcoin "$@"
