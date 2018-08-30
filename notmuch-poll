@@ -136,6 +136,7 @@ notmuchcmd tag +to-me not tag:to-me and not tag:rss and tag:inbox and to:will@ca
 notmuchcmd tag +to-me not tag:to-me and not tag:rss and tag:inbox and to:will@casarin.me
 notmuchcmd tag +to-me not tag:to-me and not tag:rss and tag:inbox and to:william@casarin.ca
 notmuchcmd tag +to-me not tag:to-me and not tag:rss and tag:inbox and to:william@casarin.me
+notmuchcmd tag -to-me tag:to-me and tag:inbox and from:discoursemail.com
 
 notmuchcmd tag +flagged tag:inbox and not tag:flagged and to:jackbox55+star@gmail.com
 notmuchcmd tag +flagged tag:inbox and not tag:flagged and to:jackbox55+s@gmail.com
@@ -153,10 +154,7 @@ notmuchcmd tag +monstercat +connect tag:inbox and to:monstercat/connect
 
 
 # forums
-notmuchcmd tag +patchwork +busy +list to:patchwork@lists.ozlabs.org and tag:inbox
-notmuchcmd tag +wayland +busy +list to:wayland-devel and tag:inbox and not tag:wayland
 notmuchcmd tag +suckless +list to:suckless.org and tag:inbox and not tag:suckless
-notmuchcmd tag +ats +list to:ats-lang-users and tag:inbox
 notmuchcmd tag +bitcoin +list folder:".Lists.bitcoin" and tag:inbox
 notmuchcmd tag +best -filed +bitcoin-dev +bitcoin +list to:"bitcoin-dev@lists.linuxfoundation.org" and tag:inbox and not tag:bitcoin-dev
 notmuchcmd tag +cypherpunks +list 'from:cypherpunks@lists.cpunks.org' and tag:inbox
@@ -166,13 +164,14 @@ notmuchcmd tag +bitcoin +busy +bips to:"bitcoin/bips" and tag:inbox
 notmuchcmd tag +lightning +lightning-dev +list to:lightning-dev
 notmuchcmd tag +lightning to:"lightningnetwork/" and tag:inbox
 notmuchcmd tag +lightning -busy lightning and tag:question and tag:inbox
+notmuchcmd tag +lightning +clightning +list to:"c-lightning@lists.ozlabs.org" and tag:inbox
 notmuchcmd tag +lightning +clightning to:"ElementsProject/lightning" and tag:inbox
 notmuchcmd tag +cabal2nix +nix +list to:NixOS/cabal2nix and tag:inbox
 notmuchcmd tag +cicn +icn +list to:cicn and tag:inbox
 notmuchcmd tag +component +list to:componentjs.googlegroups.com and tag:inbox
 notmuchcmd tag +crypto +list to:cryptography.metzdowd.com and tag:inbox
 notmuchcmd tag +elm +list folder:".Lists.elm" and tag:inbox
-notmuchcmd tag +github +list \(folder:".GitHub" or from:github.com\) and tag:inbox
+notmuchcmd tag +github +filed \(folder:".GitHub" or from:github.com\) and tag:inbox
 
 notmuchcmd tag +pr '"You can view, comment on, or merge this pull request online at"' and tag:github and not tag:pr and tag:inbox and not tag:issue
 #notmuchcmd tag +issue '/issues\//' and tag:github and not tag:pr and not tag:issue and tag:inbox
@@ -180,11 +179,12 @@ notmuchcmd tag +pr '"You can view, comment on, or merge this pull request online
 notmuch tag +pr $(notmuch search --output=threads tag:pr and tag:inbox)
 
 notmuchcmd tag +merged Merged and event from:notifications@github.com and not tag:merged and tag:inbox and tag:pr
-#notmuchcmd tag +closed 'Closed' from:notifications@github.com and not tag:closed and tag:inbox
+notmuchcmd tag +closed Closed and event from:notifications@github.com and not tag:closed and tag:inbox and tag:pr
 
 notmuch tag +merged $(notmuch search --output=threads tag:merged and tag:inbox)
+notmuch tag +closed $(notmuch search --output=threads tag:closed and tag:inbox)
 
-notmuchcmd tag +bot '"Semi-automatic update"' or 'from:"GrahamC of Borg"' and not tag:bot and tag:inbox
+notmuchcmd tag +bot from:DrahtBot or '"Semi-automatic update"' or 'from:"GrahamC of Borg"' and not tag:bot and tag:inbox
 notmuchcmd tag +haskell +cabal-dev +list to:cabal-devel.haskell.org and tag:inbox
 notmuchcmd tag +haskell +commercial-haskell +list to:commercialhaskell.googlegroups.com and tag:inbox
 notmuchcmd tag +haskell +ghc-devs +list to:ghc-devs.haskell.org and tag:inbox
@@ -195,7 +195,7 @@ notmuchcmd tag +haskell +pipes +list to:haskell-pipes.googlegroups.com and tag:i
 notmuchcmd tag +haskell +streaming to:streaming-haskell.googlegroups.com and tag:inbox
 notmuchcmd tag +icn +list folder:".Lists.icn" and tag:inbox
 notmuchcmd tag +ndn +list to:ndn-interest and tag:inbox
-notmuchcmd tag +nix-dev +nix +list \(to:nix-dev@lists.science.uu.nl OR to:nix-dev@cs.uu.nl OR to:nix-devel@googlegroups.com\) and tag:inbox
+notmuchcmd tag +nix-dev +nix +list \(to:nix-dev@lists.science.uu.nl OR to:nix-dev@cs.uu.nl OR to:nix-devel@googlegroups.com OR from:nixos1@discoursemail.com\) and tag:inbox
 notmuchcmd tag +nixpkgs +nix +busy +list to:nixpkgs@noreply.github.com and tag:inbox
 notmuchcmd tag +nixpm +nix +list to:nix@noreply.github.com and tag:inbox
 notmuchcmd tag +hydra +nix +list to:hydra@noreply.github.com and tag:inbox
@@ -208,29 +208,34 @@ notmuchcmd tag +webvr +vr +list to:web-vr-discuss and tag:inbox
 # razorcx
 notmuchcmd tag +razorcx \(from:razorcx.com or from:"Vladislav Vyatkin" or from:"Dariya Kapelyukhovskaya"\) and tag:inbox and not tag:razorcx
 
-notmuchcmd tag +best -busy -filed \
+notmuchcmd tag +best -busy \
            tag:inbox and \
            not tag:best and \
-           not tag:github and \
            \(from:"Pieter Wuille" or \
            from:"Peter Todd" or \
            from:"Adam Back" or \
            from:"Rusty Russell" or \
+           from:"Christian Decker" or \
            from:"Gregory Maxwell" or \
+           from:"Jameson Lopp" or \
            from:roconnor \
            \)
 
-# except if someone mentions me
-notmuchcmd tag +flagged -busy tag:inbox and tag:list and \(jb55 or tag:to-me\)
+notmuchcmd tag +kindle tag:inbox and not tag:kindle and 'from:jb55+kindle@jb55.com'
+
+# except if someone mentions e
+notmuchcmd tag +flagged -busy -filed tag:inbox and '(tag:list and tag:to-me) or to:mention@noreply.github.com or to:review_requested@noreply.github.com'
 
 # things I'm interested in
-notmuchcmd tag +flagged -busy tag:inbox and '(psbt or bip174 or "bip 174")'
+notmuchcmd tag +psbt -filed +flagged -busy tag:inbox and not tag:bot and \
+           '(psbt or bip174 or bip118 or "bip 118" or SIGHASH_NOINPUT or SIGHASH_NOINPUT_UNSAFE or "bip 174" or (tag:clightning and tag:list))'
 notmuchcmd tag +flagged -busy tag:inbox and tag:spacemacs and tag:list and notmuch
 notmuchcmd tag +flagged -busy tag:inbox and tag:nixpkgs and \
   \(bitcoin or altcoins or trezor or multi-ghc-travis or obs-studio or dragon-drop or clib or rss2email or terra or wkhtmltopdf or altcoins or notmuch\)
 
 # filed
-notmuchcmd tag +filed '(tag:list or tag:rss or tag:busy)' and not tag:filed and not tag:best and not tag:flagged and tag:inbox
+notmuchcmd tag +filed '(tag:list or tag:rss or tag:busy)' and not tag:filed and \
+           '((tag:best and tag:github) or not tag:best)' and not tag:flagged and tag:inbox
 
 # remove annoying from inbox, should be last in file
 notmuchcmd tag -inbox tag:inbox and tag:alert or tag:update
@@ -261,6 +266,6 @@ notmuchcmd tag -inbox tag:inbox and folder:".Archive"
 notmuchcmd tag -inbox tag:inbox and folder:".Archives.2017"
 
 # remove to-me from rss items
-notmuchcmd tag -to-me tag:inbox and tag:rss and tag:to-me
+#notmuchcmd tag -to-me tag:inbox and tag:rss and tag:to-me
 
 printf "notmuch tagging done.\n"
