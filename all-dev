@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
+
+nix-path () {
+    nix-instantiate --eval --expr 'with import <nixpkgs> {}; "${'"$1"'}"' | sed 's/"//g'
+}
+
+RUST_SRC_PATH="$(nix-path rustChannels.nightly.rust-src)/lib/rustlib/src/rust/src"
+export RUST_SRC_PATH
+
 exec nix-shell -p \
      asciidoc \
+     libgit2 \
      autoconf \
+     rustChannels.nightly.rust \
+     rustracer \
      autogen \
      automake \
      bison \
