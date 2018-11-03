@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-xdg-open "$@"
+exec $HOME/bin/xdg-open "$@"

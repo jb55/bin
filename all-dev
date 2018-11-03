@@ -1,26 +1,25 @@
 #!/usr/bin/env bash
 
-nix-path () {
-    nix-instantiate --eval --expr 'with import <nixpkgs> {}; "${'"$1"'}"' | sed 's/"//g'
-}
+# export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.nightly.rust-src)"/lib/rustlib/src/rust/src
 
-RUST_SRC_PATH="$(nix-path rustChannels.nightly.rust-src)/lib/rustlib/src/rust/src"
-export RUST_SRC_PATH
+
+# rustChannels.nightly.rust \
+#     rustracer \
+# texlive.combined.scheme-full \
 
 exec nix-shell -p \
      asciidoc \
      libgit2 \
+     openssl.dev \
      autoconf \
-     rustChannels.nightly.rust \
-     rustracer \
      autogen \
      automake \
      bison \
      cairo \
+     pkgconfig \
      clang \
      cppcheck \
      dotnet-sdk \
-     elmPackages.elm \
      flex \
      gdb \
      git \
@@ -28,21 +27,20 @@ exec nix-shell -p \
      glib \
      gmp \
      gtk3 \
-     haskellEnv \
      imagemagick \
-     libical \
+     libical.{dev,out} \
      librsvg \
      libtool \
      libxml2 \
      mesa_noglu \
      nodejs \
      pkgconfig \
-     'python3.withPackages (p: with p; [bitcoinlib sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
+     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8])' \
      qrencode \
      SDL2 \
      sqlite \
      tor \
-     valgrind \
+     valgrind.dev \
      xorg.libX11.{man,dev} \
      xorg.libXft \
      zlib \

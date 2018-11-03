@@ -12,4 +12,5 @@ if type VBoxManage > /dev/null; then
     fi
 fi
 
+sleep 5
 pkill VirtualBox

@@ -10,26 +10,18 @@ ctl () {
 
 if [ $# -eq 0 ]
 then
-    printf "nostat [ARGS].. - ARGS: {+,-}{w,h}, +start, -stop\n" >&2
+    printf "nostat [ARGS].. - ARGS: {+,-}h, +start, -stop\n" >&2
 fi
 
 for var in "$@"
 do
     case $var in
-        +w)
-            ctl start work-email-notifier
-            touch ~/var/notify/work
-            ;;
-        -w)
-            ctl stop work-email-notifier
-            rm -f ~/var/notify/work
-            ;;
         +h)
-            ctl start home-email-notifier
+            ctl start email-fetcher
             touch ~/var/notify/home
             ;;
         -h)
-            ctl stop home-email-notifier
+            ctl stop email-fetcher
             rm -f ~/var/notify/home
             ;;
      esac

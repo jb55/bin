@@ -4,6 +4,7 @@ peeps=$(cat <<EOP
 Australia/Lord_Howe,rusty
 CET,cdecker
 EET,ukraine
+Pacific/Fiji,fiji
 EOP
 )
 
