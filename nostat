@@ -27,6 +27,12 @@ do
      esac
 done
 
-printf "\n" >&2
+printf '\n' >&2
 
-ls -1 ~/var/notify
+res=$(ls -1 ~/var/notify)
+if [ -z "$res" ]
+then
+    res=off
+fi
+
+printf '%s\n' "$res"
