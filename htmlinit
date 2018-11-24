@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 
@@ -6,7 +6,8 @@ script_tag = ""
 script = len(sys.argv) > 1 and sys.argv[1] or None
 
 if script:
-  script_tag = '<script src="%s"></script>' % script
+  script_tag = '<script src="{}"></script>'.format(script)
+
 
 hello = """
 <!DOCTYPE html>
@@ -19,9 +20,9 @@ hello = """
     </head>
     <body>
         <h1>Hello World</h1>
-    %s
+    {}
     </body>
 </html>
-""" % script_tag
+""".format(script_tag)
 
-print hello
+print(hello)
