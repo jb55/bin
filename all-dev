@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
+export GNUPGHOME=~/.gnupg/trezor
+
 nix-path () {
     nix-instantiate --eval --expr 'with import <nixpkgs> {}; "${'"$1"'}"' | sed 's/"//g'
 }
 
-RUST_SRC_PATH="$(nix-path rustChannels.nightly.rust-src)/lib/rustlib/src/rust/src"
-export RUST_SRC_PATH
+#RUST_SRC_PATH="$(nix-path rustChannels.nightly.rust-src)/lib/rustlib/src/rust/src"
+#export RUST_SRC_PATH
 
 exec nix-shell -p \
      asciidoc \
      libgit2 \
      autoconf \
-     rustChannels.nightly.rust \
-     rustracer \
      autogen \
      automake \
      bison \
@@ -20,7 +20,6 @@ exec nix-shell -p \
      clang \
      cppcheck \
      dotnet-sdk \
-     elmPackages.elm \
      flex \
      gdb \
      git \
@@ -29,7 +28,9 @@ exec nix-shell -p \
      gmp \
      gtk3 \
      haskellEnv \
+     elmPackages.elm \
      imagemagick \
+     texlive.combined.scheme-full \
      libical \
      librsvg \
      libtool \
@@ -37,7 +38,7 @@ exec nix-shell -p \
      mesa_noglu \
      nodejs \
      pkgconfig \
-     'python3.withPackages (p: with p; [bitcoinlib sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
+     'python3.withPackages (p: with p; [bitcoinlib ipython tornado sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
      qrencode \
      SDL2 \
      sqlite \
