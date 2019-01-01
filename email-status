@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-jctlu -fu home-email-notifier
+jctlu -fu email-fetcher

@@ -12,11 +12,13 @@ nix-path () {
 exec nix-shell -p \
      asciidoc \
      libgit2 \
+     openssl.dev \
      autoconf \
      autogen \
      automake \
      bison \
      cairo \
+     pkgconfig \
      clang \
      cppcheck \
      dotnet-sdk \
@@ -32,6 +34,8 @@ exec nix-shell -p \
      imagemagick \
      texlive.combined.scheme-full \
      libical \
+     imagemagick \
+     libical.{dev,out} \
      librsvg \
      libtool \
      libxml2 \
@@ -43,7 +47,7 @@ exec nix-shell -p \
      SDL2 \
      sqlite \
      tor \
-     valgrind \
+     valgrind.dev \
      xorg.libX11.{man,dev} \
      xorg.libXft \
      zlib \

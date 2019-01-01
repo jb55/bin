@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-time=$(journalctl --user -n1 --no-pager --output=short-iso -u home-email-notifier | tail -n1  | cut -d " " -f1 | xargs -I{} date -d {} '+%F %R')
+service=email-fetcher
+
+time=$(journalctl --user -n1 --no-pager --output=short-iso -u $service | tail -n1  | cut -d " " -f1 | xargs -I{} date -d {} '+%F %R')
 
 diff=$(datediff --format="%Hh:%Mm" "$time" "$(date '+%F %R')")
 
 last_email=$(notmuch search --format=json --limit=1 --sort=newest-first date:today | jq -r '.[0].date_relative')
 
 printf "last email $last_email | fetched $diff ago | "
-journalctl --user -n1 --no-pager --output=cat -u home-email-notifier
+journalctl --user -n1 --no-pager --output=cat -u $service
