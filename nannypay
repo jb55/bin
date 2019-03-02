@@ -3,5 +3,5 @@
 
 
 
-pay="${3:-15}"
+pay="${3:-17}"
 exec datediff "$1" "$2" -f %M | xargs printf "%s/(60/$pay)\n" | ratio

@@ -11,12 +11,14 @@ theme="$1"
 [ "$theme" != "dark" ] && [ "$theme" != "light" ] && usage
 
 termcolor "$theme" &
-switch-term-themes "$theme"
+switch-term-themes "$theme" &
 
 if [ "$theme" == "light" ]; then
-  feh --bg-fill ~/var/img/wallpapers/wireframe-deer-white.jpg
+  feh --bg-fill ~/var/img/wallpapers/wireframe-deer-white.jpg &
+  exec emacsclient -s $HOME/.emacs.d/server/server --eval "(jb55/themeswitch 'light)" &
 else
-  feh --bg-fill ~/var/img/wallpapers/wireframe-deer.jpg
+  feh --bg-fill ~/var/img/wallpapers/wireframe-deer.jpg &
+  exec emacsclient -s $HOME/.emacs.d/server/server --eval "(jb55/themeswitch 'dark)" &
 fi
 
- 
+wait

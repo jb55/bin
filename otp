@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+res=$(< ~/authy.gpg gpg -d | dmenu -i -p 'authy' -l 7)
+ 
+
+IFS=, read -r label key site digits <<<"$res"
+
+printf '%s %s\n' "$site" "$label" >&2
+oathtool -d "$digits" --totp -b "$key"
