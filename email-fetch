@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sysctlu restart home-email-notifier
+sysctlu restart email-fetcher
