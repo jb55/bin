@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
 
-# export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.nightly.rust-src)"/lib/rustlib/src/rust/src
-
-
-# rustChannels.nightly.rust \
-#     rustracer \
+export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.beta.rust-src)"/lib/rustlib/src/rust/src
+export GNUPGHOME=~/.gnupg/trezor
 # texlive.combined.scheme-full \
 
+export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
+
 exec nix-shell -p \
+     llvmPackages.libclang clang stdenv.cc.libc pango gdk_pixbuf \
      asciidoc \
-     libgit2 \
-     openssl.dev \
      autoconf \
      autogen \
      automake \
      bison \
      cairo \
-     pkgconfig \
-     clang \
      cppcheck \
-     dotnet-sdk \
+     elmPackages.elm \
      flex \
      gdb \
      git \
@@ -27,15 +23,24 @@ exec nix-shell -p \
      glib \
      gmp \
      gtk3 \
+     haskellEnv \
      imagemagick \
+     libappindicator \
+     libgit2 \
      libical.{dev,out} \
      librsvg \
      libtool \
      libxml2 \
      mesa_noglu \
      nodejs \
+     obs-studio \
+     openssl.dev \
      pkgconfig \
-     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8])' \
+     rustChannels.beta.clippy-preview \
+     rustChannels.beta.rust \
+     rustracer \
+     stdenv \
+     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib])' \
      qrencode \
      SDL2 \
      sqlite \
