@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-emacsclient -s /home/jb55/.emacs.d/server/server -c -a vim "$@"
+exec emacsclient -s /home/jb55/.emacs.d/server/server -c -a vim "$@"
