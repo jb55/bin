@@ -33,6 +33,7 @@ exec nix-shell -p \
      libxml2 \
      mesa_noglu \
      nodejs \
+     dotnet-sdk \
      obs-studio \
      openssl.dev \
      pkgconfig \
