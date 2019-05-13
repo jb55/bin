@@ -148,9 +148,14 @@ notmuchcmd tag +alert +circleci tag:inbox and from:builds@circleci.com
 notmuchcmd tag +alert +trello tag:inbox and from:trello
 notmuchcmd tag +alert +sentry tag:inbox and from:noreply@md.getsentry.com or from:noreply@outbound.getsentry.com
 
-# work
-notmuchcmd tag +monstercat tag:inbox and to:bill@monstercat.com
-notmuchcmd tag +monstercat +connect tag:inbox and to:monstercat/connect
+# linux
+notmuchcmd tag +linux +list to:vger.kernel.org and tag:inbox and not tag:linux
+notmuchcmd tag +mesa +linux +list to:mesa-dev and tag:inbox and not tag:mesa
+notmuchcmd tag +xorg +linux +list to:xorg-devel@lists.x.org and tag:inbox and not tag:xorg
+notmuchcmd tag +git +list to:git@vger.kernel.org and tag:inbox and not tag:git
+notmuchcmd tag +dri +linux +list to:dri-devel@lists.freedesktop.org and tag:inbox and not tag:dri
+notmuchcmd tag +sa-users +linux +list to:users@spamassassin.apache.org and tag:inbox and not tag:sa-users
+notmuchcmd tag +nouveau +linux +list to:nouveau@lists.freedesktop.org and tag:inbox and not tag:nouveau
 
 
 # forums
@@ -212,6 +217,8 @@ notmuchcmd tag +best -busy \
            tag:inbox and \
            not tag:best and \
            \(from:"Pieter Wuille" or \
+           from:"Linus Torvalds" or \
+           from:"Keith Packard" or \
            from:"Peter Todd" or \
            from:"Adam Back" or \
            from:"Rusty Russell" or \
@@ -223,9 +230,6 @@ notmuchcmd tag +best -busy \
 
 notmuchcmd tag +kindle tag:inbox and not tag:kindle and 'from:jb55+kindle@jb55.com'
 
-# except if someone mentions e
-notmuchcmd tag +flagged -busy -filed tag:inbox and '(tag:list and tag:to-me) or to:mention@noreply.github.com or to:review_requested@noreply.github.com'
-
 # things I'm interested in
 notmuchcmd tag +psbt -filed +flagged -busy tag:inbox and not tag:bot and \
            '(psbt or bip174 or bip118 or "bip 118" or SIGHASH_NOINPUT or SIGHASH_NOINPUT_UNSAFE or "bip 174" or (tag:clightning and tag:list))'
@@ -235,7 +239,10 @@ notmuchcmd tag +flagged -busy tag:inbox and tag:nixpkgs and \
 
 # filed
 notmuchcmd tag +filed '(tag:list or tag:rss or tag:busy)' and not tag:filed and \
-           '((tag:best and tag:github) or not tag:best)' and not tag:flagged and tag:inbox
+           not tag:best and not tag:flagged and tag:inbox
+
+# except if someone mentions e
+notmuchcmd tag +flagged -busy -filed tag:inbox and '(tag:list and tag:to-me) or to:mention@noreply.github.com or to:review_requested@noreply.github.com'
 
 # remove annoying from inbox, should be last in file
 notmuchcmd tag -inbox tag:inbox and tag:alert or tag:update
@@ -266,6 +273,6 @@ notmuchcmd tag -inbox tag:inbox and folder:".Archive"
 notmuchcmd tag -inbox tag:inbox and folder:".Archives.2017"
 
 # remove to-me from rss items
-#notmuchcmd tag -to-me tag:inbox and tag:rss and tag:to-me
+notmuchcmd tag -to-me tag:inbox and tag:rss and tag:to-me
 
 printf "notmuch tagging done.\n"
