@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pay=18
+pay=${PAY:-18}
 
 CSV="${NANNYPAY_CSV:-$HOME/.local/share/nannypay/pay.txt}"
 mkdir -p "$(dirname "$CSV")"
@@ -86,10 +86,12 @@ if [ "$cmd" = "r" ]; then
     day=${4:-$(date +%F)}
 
     printf "%s\n" "$amt"
-    grep "$day" "$CSV" >/dev/null && duplicate "$day"
+    #grep "$day" "$CSV" >/dev/null && duplicate "$day"
     printf "%s\t%s\n" "$day" "$amt" >> "$CSV"
 elif [ "$1" = "p" ] || [ "$cmd" = "p" ]; then
     pay
+elif [ "$1" = "e" ]; then
+    edit "$CSV"
 else
     amt=$(get_amt "$1" "$2")
     printf "%s\n" "$amt"
