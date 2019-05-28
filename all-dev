@@ -10,6 +10,7 @@ exec nix-shell -p \
      llvmPackages.libclang clang stdenv.cc.libc pango gdk_pixbuf \
      asciidoc \
      autoconf \
+     secp256k1 \
      autogen \
      automake \
      bison \
@@ -35,6 +36,7 @@ exec nix-shell -p \
      nodejs \
      dotnet-sdk \
      obs-studio \
+     rocksdb \
      openssl.dev \
      pkgconfig \
      rustChannels.beta.clippy-preview \
