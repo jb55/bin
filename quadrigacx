@@ -1,9 +1,0 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i bash -p jq
-nbtc=33
-
-usd=$(curl -sL 'https://api.bitfinex.com/v2/tickers?symbols=tBTCUSD' | jq '.[0][1]' &)
-cad=$(curl -sL 'https://api.quadrigacx.com/v2/ticker' | jq -r .last &)
-wait
-calc=$(bc -l <<<"$cad * $nbtc")
-printf "$%s, $%s ($%s)\n" "$usd" "$cad" "$(nfmt <<<$calc)"
