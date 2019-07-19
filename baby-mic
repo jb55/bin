@@ -1,6 +1,6 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p mplayer
-ssh monad-local "ffmpeg -loglevel panic -f alsa -ac 1 -i hw:2 -f ogg -" \
+ssh monad-local "ffmpeg -loglevel panic -f alsa -i default -f ogg -" \
   | mplayer - -idle -demuxer ogg
 
 
