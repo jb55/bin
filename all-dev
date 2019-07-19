@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
+rustChannel=stable
+
+export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$rustChannel.rust-src)"/lib/rustlib/src/rust/src
+
 export GNUPGHOME=~/.gnupg/trezor
 
-nix-path () {
-    nix-instantiate --eval --expr 'with import <nixpkgs> {}; "${'"$1"'}"' | sed 's/"//g'
-}
+# texlive.combined.scheme-full \
 
-#RUST_SRC_PATH="$(nix-path rustChannels.nightly.rust-src)/lib/rustlib/src/rust/src"
-#export RUST_SRC_PATH
 
-exec nix-shell -p \
+#    rustChannels.$rustChannel.rust \
+#    rustracer \
+
+exec nix-shell -k -p \
      asciidoc \
      libgit2 \
+     stdenv \
+     secp256k1 \
      openssl.dev \
      autoconf \
      autogen \
@@ -19,7 +24,11 @@ exec nix-shell -p \
      bison \
      cairo \
      pkgconfig \
-     clang \
+     haskellEnv \
+     elmPackages.elm \
+     libappindicator \
+     ncurses \
+     llvmPackages.libclang \
      cppcheck \
      dotnet-sdk \
      flex \
@@ -29,11 +38,6 @@ exec nix-shell -p \
      glib \
      gmp \
      gtk3 \
-     haskellEnv \
-     elmPackages.elm \
-     imagemagick \
-     texlive.combined.scheme-full \
-     libical \
      imagemagick \
      libical.{dev,out} \
      librsvg \
@@ -42,7 +46,8 @@ exec nix-shell -p \
      mesa_noglu \
      nodejs \
      pkgconfig \
-     'python3.withPackages (p: with p; [bitcoinlib ipython tornado sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flaky flake8])' \
+     obs-studio \
+     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest flask flaky flake8 xlib])' \
      qrencode \
      SDL2 \
      sqlite \
