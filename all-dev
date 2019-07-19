@@ -4,13 +4,11 @@ rustChannel=stable
 
 export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$rustChannel.rust-src)"/lib/rustlib/src/rust/src
 
-export GNUPGHOME=~/.gnupg/trezor
-
 # texlive.combined.scheme-full \
-
-
 #    rustChannels.$rustChannel.rust \
 #    rustracer \
+
+export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
 
 exec nix-shell -k -p \
      asciidoc \
@@ -18,19 +16,16 @@ exec nix-shell -k -p \
      stdenv \
      secp256k1 \
      openssl.dev \
+     llvmPackages.libclang clang stdenv.cc.libc pango gdk_pixbuf \
+     asciidoc \
      autoconf \
+     secp256k1 \
      autogen \
      automake \
      bison \
      cairo \
      pkgconfig \
-     haskellEnv \
-     elmPackages.elm \
-     libappindicator \
-     ncurses \
-     llvmPackages.libclang \
      cppcheck \
-     dotnet-sdk \
      flex \
      gdb \
      git \
@@ -39,12 +34,18 @@ exec nix-shell -k -p \
      gmp \
      gtk3 \
      imagemagick \
+     libappindicator \
+     libgit2 \
      libical.{dev,out} \
      librsvg \
      libtool \
      libxml2 \
      mesa_noglu \
      nodejs \
+     dotnet-sdk \
+     obs-studio \
+     rocksdb \
+     openssl.dev \
      pkgconfig \
      obs-studio \
      'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest flask flaky flake8 xlib])' \

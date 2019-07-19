@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec open "https://github.com/$1"

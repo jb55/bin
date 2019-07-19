@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 peeps=$(cat <<EOP
-Australia/Lord_Howe,rusty
+Australia/Adelaide,rusty
 CET,cdecker
 EET,ukraine
 Pacific/Fiji,fiji

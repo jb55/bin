@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #PANDOC='pandoc --metadata=fontfamily:libertine'
-PANDOC='pandoc'
+PANDOC='pandoc --variable urlcolor=cyan'
 
 usage () {
   printf "usage: pdfnow file.md OR <file.md pdfnow markdown\n" >&2
