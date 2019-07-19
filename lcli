@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-lightning-cli --rpc-file=/home/jb55/.lightning-bitcoin-rpc "$@"
+ssh 172.24.242.111 lcli "$@"
