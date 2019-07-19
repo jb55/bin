@@ -14,17 +14,16 @@ already_exists () {
 
 root=${GITHUB_ROOT:-"$HOME/dev/github"}
 owner="$1"
-repo="$2"
+
+shift
 
 [ -z "$owner" ] && usage
 
-if [ -z "$repo" ]; then
-  IFS='/' read -ra parsed <<< "$owner"
-  owner="${parsed[0]}"
-  repo="${parsed[1]}"
-  if [ -z "$owner" ] || [ -z "$repo" ]; then
+IFS='/' read -ra parsed <<< "$owner"
+owner="${parsed[0]}"
+repo="${parsed[1]}"
+if [ -z "$owner" ] || [ -z "$repo" ]; then
     usage
-  fi
 fi
 
 dest="$root/$owner"
@@ -34,7 +33,7 @@ dir="$dest/$repo"
 
 mkdir -p "$dest"
 cd "$dest"
-git clone "gh:$owner/$repo"
+git clone "$@" "gh:$owner/$repo"
 
 git config \
     --file="$dir/.git/config" \
