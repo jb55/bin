@@ -13,7 +13,7 @@ EOF
 )
 
 sudo iwlist wlp4s0 scan \
-    | grep -A2 -i -e key \
+    | grep -A6 -i -e key \
     | tr '\n' $'\t' \
     | sed "$script" \
     | sort -u \
