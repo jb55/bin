@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.beta.rust-src)"/lib/rustlib/src/rust/src
-export GNUPGHOME=~/.gnupg/trezor
+export RUST_CHANNEL=stable
+#export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rust-src)"/lib/rustlib/src/rust/src
 # texlive.combined.scheme-full \
 
 export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
+
+#     cargo-bloat \
+     #rustChannels.$RUST_CHANNEL.clippy-preview \
+     #rustChannels.$RUST_CHANNEL.rust \
+     #rustracer \
 
 exec nix-shell -p \
      llvmPackages.libclang clang stdenv.cc.libc pango gdk_pixbuf \
@@ -39,11 +44,8 @@ exec nix-shell -p \
      rocksdb \
      openssl.dev \
      pkgconfig \
-     rustChannels.beta.clippy-preview \
-     rustChannels.beta.rust \
-     rustracer \
      stdenv \
-     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib])' \
+     'python3.withPackages (p: with p; [bitcoinlib mako cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib])' \
      qrencode \
      SDL2 \
      sqlite \
