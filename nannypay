@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pay=${PAY:-18}
+pay=${PAY:-17}
 
 CSV="${NANNYPAY_CSV:-$HOME/.local/share/nannypay/pay.txt}"
 mkdir -p "$(dirname "$CSV")"
@@ -30,7 +30,7 @@ duplicate () {
 }
 
 show_entries () {
-    n=${1:-7}
+    n=${1:-12}
     printf "\nlast %d entries:\n" "$n" 1>&2
     (printf "date\tamount\tpaid?\n"; tail -n "$n" "$CSV") | column -t -s $'\t' 1>&2
     printf "\n%s to be paid\n" "$(to_pay_amt)" 1>&2
