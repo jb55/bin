@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#exec chrome "$@"
 
 kill_browser () {
   exec pkill qutebrowser

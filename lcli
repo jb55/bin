@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-lightning-cli --lightning-dir $HOME/.lightning-bitcoin "$@"
+lightning-cli --rpc-file=/home/jb55/.lightning-bitcoin-rpc "$@"
