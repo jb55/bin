@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
-exec qbrowser "$@"
 #exec chrome "$@"
+
+kill_browser () {
+  exec pkill qutebrowser
+  #exec pkill --oldest chromium
+}
+
+if [ "$1" == "kill" ]; then
+  kill_browser
+fi
+
+#exec chrome "$@"
+exec qutebrowser --enable-webengine-inspector "$@"

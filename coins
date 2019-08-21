@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+WALLETS=${WALLETS:-trezor cc old-wallet clightning bitcoinwizard}
+
+for wallet in $WALLETS
+do
+  bcli -rpcwallet="$wallet" "$@" listaddressgroupings  | jq -r -c ".[][] | select(.[1] != 0) | [\"$wallet\"] + . | @tsv"
+done

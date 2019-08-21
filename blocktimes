@@ -6,17 +6,16 @@ CLI="bitcoin-cli -$BTCNET"
 
 blocks=$($CLI getblockcount)
 
-n=${1:-99}
+n=${1:-25}
 n1=$((blocks - n))
 
 for block in $(seq $n1 $blocks)
 do
   hash=$($CLI getblockhash "$block")
-  $CLI getblock "$hash" 1 | jq .time
+  $CLI getblock "$hash" 1 | jq -r .time
 done \
   | sed '$!N;s/\n/,/' \
   | tee /tmp/blocktimes \
-  | sed -e 's/\(.*\),\(.*\)/datediff -f %S @\1 @\2/g' \
-  | tee /tmp/blocktimes2 \
-  | sh \
-  | awk '{ total += $1 } END { print (total/NR)/60 }'
+  | sed -e 's/\(.*\),\(.*\)/datediff -f %0M:%0S @\1 @\2/g' \
+  | sh
+# | awk '{ total += $1 } END { print (total/NR)/60 }'

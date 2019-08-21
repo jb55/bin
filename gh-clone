@@ -35,9 +35,7 @@ mkdir -p "$dest"
 cd "$dest"
 git clone "$@" "gh:$owner/$repo"
 
-git config \
-    --file="$dir/.git/config" \
-    --add remote.origin.fetch '+refs/pull/*/head:refs/pull/origin/*'
+git config --add remote.origin.fetch '+refs/pull/*/head:refs/pull/origin/*'
 
 git config \
     --file="$dir/.git/config" \

@@ -1,5 +1,4 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i bash -p jq
+#!/usr/bin/env bash
 pair=XXBTZCAD
 cad=$(curl -sL "https://api.kraken.com/0/public/Ticker?pair=$pair" | jq -r ".result.$pair.a[0]")
 #usd=$(curl -sL 'https://api.bitfinex.com/v2/tickers?symbols=tBTCUSD' | jq '.[0][1]' &)
