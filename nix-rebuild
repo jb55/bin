@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-sudo nixos-rebuild switch -k --cores 2 -I nixos-config=$HOME/etc/nix-files/configuration.nix -I dotfiles=$HOME/dotfiles -I nixpkgs=$HOME/nixpkgs -I jb55pkgs=$HOME/etc/jb55pkgs --show-trace
