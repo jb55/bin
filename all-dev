@@ -1,31 +1,31 @@
 #!/usr/bin/env bash
 
-rustChannel=stable
-
-export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$rustChannel.rust-src)"/lib/rustlib/src/rust/src
-
+export RUST_CHANNEL=stable
+export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rust-src)"/lib/rustlib/src/rust/src
 # texlive.combined.scheme-full \
-#    rustChannels.$rustChannel.rust \
-#    rustracer \
 
-export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
+#export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
 
-exec nix-shell -k -p \
+#     cargo-bloat \
+
+# secp256k1 \
+     #librsvg \
+
+exec nix-shell -p \
+     llvmPackages.libclang pango gdk_pixbuf \
      asciidoc \
-     libgit2 \
-     stdenv \
-     secp256k1 \
-     openssl.dev \
-     llvmPackages.libclang clang stdenv.cc.libc pango gdk_pixbuf \
-     asciidoc \
+     rustChannels.$RUST_CHANNEL.clippy-preview \
+     rustChannels.$RUST_CHANNEL.rust \
+     rustracer \
      autoconf \
-     secp256k1 \
+     zlib libevent pkg-config cmake meson clang-tools boost170 swig ninja openjdk autoreconfHook gsl msgpack openssl websocketpp nlohmann_json \
      autogen \
+     libwally-core \
      automake \
      bison \
      cairo \
-     pkgconfig \
      cppcheck \
+     elmPackages.elm \
      flex \
      gdb \
      git \
@@ -33,11 +33,11 @@ exec nix-shell -k -p \
      glib \
      gmp \
      gtk3 \
+     haskellEnv \
      imagemagick \
      libappindicator \
      libgit2 \
      libical.{dev,out} \
-     librsvg \
      libtool \
      libxml2 \
      mesa_noglu \
@@ -47,8 +47,8 @@ exec nix-shell -k -p \
      rocksdb \
      openssl.dev \
      pkgconfig \
-     obs-studio \
-     'python3.withPackages (p: with p; [bitcoinlib cheroot sphinx pytest-forked pytest_xdist pytest flask flaky flake8 xlib])' \
+     stdenv \
+     'python3.withPackages (p: with p; [bitcoinlib Mako cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib virtualenv])' \
      qrencode \
      SDL2 \
      sqlite \
