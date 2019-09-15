@@ -7,6 +7,8 @@ cert=$(sed -ne '
    /-END CERTIFICATE-/q                            # bailing out soon as the cert end seen
 ' <<<"$out")
 
+(
 echo "$cert" | openssl x509 -in - -text -noout
 
 printf "%s\n" "$out"
+) | less
