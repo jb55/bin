@@ -10,19 +10,19 @@ export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUS
 
 # secp256k1 \
      #librsvg \
+     #libwally-core \
 
 exec nix-shell -p \
      llvmPackages.libclang pango gdk_pixbuf \
      asciidoc \
      rustChannels.$RUST_CHANNEL.clippy-preview \
      rustChannels.$RUST_CHANNEL.rust \
-     rustracer \
      autoconf \
      zlib libevent pkg-config cmake meson clang-tools boost170 swig ninja openjdk autoreconfHook gsl msgpack openssl websocketpp nlohmann_json \
      autogen \
-     libwally-core \
      automake \
      bison \
+     rustracer \
      cairo \
      cppcheck \
      elmPackages.elm \
@@ -33,7 +33,6 @@ exec nix-shell -p \
      glib \
      gmp \
      gtk3 \
-     haskellEnv \
      imagemagick \
      libappindicator \
      libgit2 \
