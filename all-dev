@@ -33,6 +33,7 @@ exec nix-shell -p \
      glib \
      gmp \
      gtk3 \
+     haskellEnv \
      imagemagick \
      libappindicator \
      libgit2 \
