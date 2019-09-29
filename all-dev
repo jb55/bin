@@ -2,21 +2,14 @@
 
 export RUST_CHANNEL=stable
 export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rust-src)"/lib/rustlib/src/rust/src
-# texlive.combined.scheme-full \
-
-#export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
-
-#     cargo-bloat \
-
-# secp256k1 \
-     #librsvg \
-     #libwally-core \
+export LD_LIBRARY_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rustc)"/lib:$LD_LIBRARY_PATH
 
 exec nix-shell -p \
-     llvmPackages.libclang pango gdk_pixbuf \
-     asciidoc \
      rustChannels.$RUST_CHANNEL.clippy-preview \
      rustChannels.$RUST_CHANNEL.rust \
+     rustracer \
+     llvmPackages.libclang pango gdk_pixbuf \
+     asciidoc \
      autoconf \
      zlib libevent pkg-config cmake meson clang-tools boost170 swig ninja openjdk autoreconfHook gsl msgpack openssl websocketpp nlohmann_json \
      autogen \
