@@ -2,7 +2,7 @@
 
 net=${BTCNET:-mainnet}
 
-CLI="bitcoin-cli -$BTCNET"
+CLI="bcli -$BTCNET"
 
 blocks=$($CLI getblockcount)
 
