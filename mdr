@@ -9,4 +9,8 @@ for f in "${files[@]}"; do
   fi
 done
 
+if [ -f README ]; then
+  less README
+fi
+
 exit 1
