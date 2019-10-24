@@ -11,7 +11,7 @@ CLI="bcli -$BTCNET"
 
 blocks=$($CLI getblockcount)
 
-n=${1:-25}
+n=${1:-26}
 n1=$((blocks - n + 1))
 
 mkreq () {
