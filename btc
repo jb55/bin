@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cmd=${1-price}
+
+exec btc-$cmd
