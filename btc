@@ -2,4 +2,6 @@
 
 cmd=${1-price}
 
-exec btc-$cmd
+shift
+
+exec btc-$cmd "$@"
