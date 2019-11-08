@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-/run/current-system/sw/bin/dmenu -fn 'Inconsolata-14' "$@"
+/run/current-system/sw/bin/dmenu -fn 'terminus-12' "$@"
