@@ -1,3 +1,2 @@
-#!/usr/bin/env bash
-ssh 172.24.242.111 bcli "$@"
-
+#!/usr/bin/env sh
+exec bitcoin-cli "$@"
