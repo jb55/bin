@@ -11,6 +11,7 @@ theme="$1"
 [ "$theme" != "dark" ] && [ "$theme" != "light" ] && usage
 
 termcolor "$theme" &
+pkill --signal SIGUSR1 xmonad
 switch-term-themes "$theme" &
 
 if [ "$theme" == "light" ]; then

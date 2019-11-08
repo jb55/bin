@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-lightning-cli --lightning-dir $HOME/.lightning-bitcoin "$@"
+ssh 172.24.242.111 lcli "$@"
