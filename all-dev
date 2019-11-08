@@ -2,6 +2,7 @@
 
 export RUST_CHANNEL=stable
 export RUST_SRC_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rust-src)"/lib/rustlib/src/rust/src
+export LD_LIBRARY_PATH="$(nix-build '<nixpkgs>' --no-out-link -A rustChannels.$RUST_CHANNEL.rustc)"/lib:$LD_LIBRARY_PATH
 # texlive.combined.scheme-full \
 
 #export LIBCLANG_PATH="$(nix-build '<nixpkgs>' --no-out-link -A llvmPackages.libclang)/lib"
@@ -16,15 +17,14 @@ exec nix-shell -p \
      asciidoc \
      rustChannels.$RUST_CHANNEL.clippy-preview \
      rustChannels.$RUST_CHANNEL.rust \
-     rustracer \
      autoconf \
-     zlib libevent pkg-config cmake meson clang-tools boost170 swig ninja openjdk autoreconfHook gsl msgpack openssl websocketpp nlohmann_json \
      autogen \
-     libwally-core \
      automake \
      bison \
      cairo \
      cppcheck \
+     curl \
+     dotnet-sdk \
      elmPackages.elm \
      flex \
      gdb \
@@ -32,23 +32,27 @@ exec nix-shell -p \
      glfw \
      glib \
      gmp \
+     go \
      gtk3 \
      haskellEnv \
      imagemagick \
      libappindicator \
+     libgcrypt \
      libgit2 \
      libical.{dev,out} \
      libtool \
      libxml2 \
      mesa_noglu \
      nodejs \
-     dotnet-sdk \
      obs-studio \
-     rocksdb \
      openssl.dev \
+     pkg-config \
      pkgconfig \
+     protobufc \
+     rocksdb \
+     rustracer \
      stdenv \
-     'python3.withPackages (p: with p; [bitcoinlib Mako cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib virtualenv])' \
+     'python3.withPackages (p: with p; [bitcoinlib Mako cheroot sphinx pytest-forked pytest_xdist pytest ephemeral_port_reserve flask flaky flake8 xlib virtualenv pylightning])' \
      qrencode \
      SDL2 \
      sqlite \
