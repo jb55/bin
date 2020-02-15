@@ -4,13 +4,13 @@ files=(readme.md README.md)
 
 for f in "${files[@]}"; do
   if [ -f "$f" ]; then
-    mandown "$f"
+    exec mandown "$f"
     exit 0
   fi
 done
 
 if [ -f README ]; then
-  less README
+  exec less README
 fi
 
 exit 1

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-notify-send "$("$@")"
+exec notify-send "$("$@" 2>&1)"
