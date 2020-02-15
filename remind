@@ -7,4 +7,4 @@ usage () {
 
 [ -z "$2" ] || [ -z "$1" ] && usage
 
-echo "notify-send -u critical \"$msg\"" | at "$2"
+echo "notify-send -u critical \"$1\"" | at "$2"
