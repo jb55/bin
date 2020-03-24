@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+REMOTE="$1"
+BRANCH="$2"
+DIR="patches/${3:-$BRANCH}"
+
+git fetch "$REMOTE" "$BRANCH"
+
+rm -rf "$DIR"
+mkdir -p "$DIR"
+
+git format-patch origin/master..FETCH_HEAD -o "$DIR"
+
+printf "$DIR\n"
+
+bats "$DIR"/*.patch
