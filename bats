@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
-REMOVES=()
+REMOVES=$(parallel bats-job ::: "$@" | sort)
 
-for file in "$@"
-do
-  base="$(basename "$file")"
-  dir="$(dirname "$file")"
-  colorfile="$dir/.${base}.color"
-  bat --style=full --paging=never --color=always "$file" > "$colorfile"
-  REMOVES+=("$colorfile")
-done
-
-"$PAGER" "${REMOVES[@]}"
-
-rm -f "${REMOVES[@]}"
+<<<"$REMOVES" xargs "$PAGER"
+<<<"$REMOVES" xargs rm -f
