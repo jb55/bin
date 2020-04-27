@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+blocks=$(bcli getblockcount)
+blockstogo=$((210000 - ($blocks % 210000)))
+countdown=$(qalc -t "10 min * $blockstogo")
+estimate=$(qalc -t "today + $countdown" | tr -d '"')
+
+printf "blocks\t%d\nto go\t%d\ntime\t%s\nestimate\t%s\n" \
+  "$blocks" "$blockstogo" "$countdown" "$estimate" | ct
