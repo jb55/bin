@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-exec bitcoin-cli "$@"
+exec bitcoin-cli -rpcuser=rpcuser -rpcpassword=rpcpass -datadir=/zbig/bitcoin "$@"

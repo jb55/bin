@@ -2,6 +2,8 @@
 
 set -e
 
+BITCOIN_RPCUSER=rpcuser
+BITCOIN_RPCPASS=rpcpass
 BITCOIN_RPCPORT=${BITCOIN_RPCPORT:-8332}
 BITCOIN_HOST=${BITCOIN_HOST:-127.0.0.1}
 
@@ -48,6 +50,6 @@ doreq "$txid_reqs" \
   | tee /tmp/blocktimes \
   | sed -e 's/\(.*\),\(.*\)/datediff -f %S @\1 @\2/g' \
   | sh \
-  | paste -d, <(<<<"$heights" sed 'N;s/\n/,/') /dev/stdin
-  # | cut -d, -f3 | awk '{ total += $1 } END { print (total/NR) }'
+  | paste -d, <(<<<"$heights" sed 'N;s/\n/,/') /dev/stdin \
+  | cut -d, -f3 | awk '{ total += $1 } END { print (total/NR) }'
 

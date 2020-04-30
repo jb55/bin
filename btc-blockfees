@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # required:
-# export BITCOIN_RPCUSER=user BITCOIN_RPCPASS=pass
 
 set -e
 
+BITCOIN_RPCUSER=${BITCOIN_RPCUSER:-rpcuser}
+BITCOIN_RPCPASS=${BITCOIN_RPCPASS:-rpcpass}
 BITCOIN_RPCPORT=${BITCOIN_RPCPORT:-8332}
 
 calc_block_subsidy() {
@@ -32,7 +33,7 @@ doreq() {
 }
 
 nblocks=${1:-100}
-count=$(bitcoin-cli getblockcount)
+count=$(btc blocks)
 
 heights=$(seq $((count - $nblocks + 1)) $count)
 # heights=$(seq 10 20)
