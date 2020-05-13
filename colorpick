@@ -1,5 +1,4 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i bash -p xclip libnotify
+#!/usr/bin/env bash
 
 picked=$(colorpicker --one-shot --short)
 

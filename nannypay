@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pay=${PAY:-17}
+pay=${PAY:-18}
 
 CSV="${NANNYPAY_CSV:-$HOME/.local/share/nannypay/pay.txt}"
 mkdir -p "$(dirname "$CSV")"

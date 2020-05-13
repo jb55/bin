@@ -13,11 +13,18 @@ END {
 EOF
 )
 
+REVERSE=r
+
+if [ -z $ASTATS_REVERSE ]; then
+    REVERSE=""
+fi
+
+
 (printf $'name\tadded\tremoved\tcommits\n';
 
 git log --numstat --pretty=$'%aN' "$@" \
     | awk -F$'\t' "$script" \
-    | sort --field-separator=$'\t' -k${ASTATS_SORT_COLUMN:-2} -gr
+    | sort --field-separator=$'\t' -k${ASTATS_SORT_COLUMN:-2} -g${REVERSE}
 ) > /tmp/git-author-stats
 
 column -t -s $'\t' /tmp/git-author-stats

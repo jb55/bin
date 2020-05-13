@@ -7,3 +7,4 @@ colorfile="$dir/.${base}.color"
 
 printf "$colorfile\n"
 exec bat --style=full --paging=never --color=always "$file" > "$colorfile"
+#<"$file" sed '0,/^$/d;0,/^$/d' | delta > "$colorfile"

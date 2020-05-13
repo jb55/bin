@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-column -t -s $'\t' "$@"
+exec column -t -s $'\t' "$@"

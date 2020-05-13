@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-exec emacsclient -s $HOME/.emacs.d/server/server -c -a vim "$@"
+emacsclient -s $HOME/.emacs.d/server/server -a vim "$@" &
+wmctrl -a emacs@$HOST
+wait

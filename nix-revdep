@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-nix-store --query --referrers "$@"
+exec nix-store --query --referrers "$@"

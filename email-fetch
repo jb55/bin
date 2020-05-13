@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sysctlu restart email-fetcher
+exec sysctlu restart email-fetcher
