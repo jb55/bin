@@ -1,4 +1,2 @@
 #!/usr/bin/env bash
-dbus-send --print-reply \
-  --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 \
-  org.mpris.MediaPlayer2.Player.OpenUri string:"$1"
+dbus-send --print-reply --dest="$(spotify-service)" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.OpenUri string:"$1"

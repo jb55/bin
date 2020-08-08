@@ -1,8 +1,27 @@
 #!/usr/bin/env bash
 
-pay=${PAY:-18}
+set -e
 
-CSV="${NANNYPAY_CSV:-$HOME/.local/share/nannypay/pay.txt}"
+if [ -z "$NANNY" ]; then
+    printf "set NANNY (and make sure PAY is correct)\n"
+    exit 1
+fi
+
+if [ "$NANNY" == "lisbeth" ]; then
+    pay=18
+fi
+
+if [ "$NANNY" == "diana" ]; then
+    pay=17
+fi
+
+if [ -z $pay ]; then
+    printf "unknown pay for %s\n" "$NANNY"
+    exit 1
+fi
+
+
+CSV="${NANNYPAY_CSV:-$HOME/.local/share/nannypay/${NANNY}.txt}"
 mkdir -p "$(dirname "$CSV")"
 if [ ! -f "$CSV" ]; then
     touch "$CSV"
@@ -32,7 +51,7 @@ duplicate () {
 show_entries () {
     n=${1:-12}
     printf "\nlast %d entries:\n" "$n" 1>&2
-    (printf "date\tamount\tpaid?\n"; tail -n "$n" "$CSV") | column -t -s $'\t' 1>&2
+    (printf "date\tamount\tstart\tend\tminutes\thour_rate\tpaid?\n"; tail -n "$n" "$CSV") | column -t -s $'\t' 1>&2
     printf "\n%s to be paid\n" "$(to_pay_amt)" 1>&2
 }
 
@@ -77,23 +96,31 @@ then
     usage
 fi
 
+get_minutes() {
+    datediff "$1" "$2" -f %M
+}
+
 get_amt() {
-    datediff "$1" "$2" -f %M | xargs printf "%s/(60/$pay)\n" | ratio
+     <<<"$1" xargs printf "%s/(60/$pay)\n" | ratio
 }
 
 if [ "$cmd" = "r" ]; then
-    amt=$(get_amt "$1" "$2")
+    start="$1"
+    end="$2"
+    minutes=$(get_minutes "$start" "$end")
+    amt=$(get_amt "$minutes")
     day=${4:-$(date +%F)}
 
     printf "%s\n" "$amt"
     #grep "$day" "$CSV" >/dev/null && duplicate "$day"
-    printf "%s\t%s\n" "$day" "$amt" >> "$CSV"
+    printf "%s\t%s\t%s\t%s\t%s\t%s\n" "$day" "$amt" "$start" "$end" "$minutes" "$pay" >> "$CSV"
 elif [ "$1" = "p" ] || [ "$cmd" = "p" ]; then
     pay
 elif [ "$1" = "e" ]; then
-    edit "$CSV"
+    "$EDITOR" "$CSV"
 else
-    amt=$(get_amt "$1" "$2")
+    minutes=$(get_minutes "$1" "$2")
+    amt=$(get_amt "$minutes")
     printf "%s\n" "$amt"
 fi
 
