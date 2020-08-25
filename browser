@@ -2,14 +2,10 @@
 #exec chrome "$@"
 
 kill_browser () {
-  exec pkill qutebrowser
-  #exec pkill --oldest chromium
+  #exec pkill qutebrowser
+  exec pkill --oldest chromium
 }
-
-if [ "$1" == "kill" ]; then
-  kill_browser
-fi
-
-#exec chrome "$@"
-qutebrowser --enable-webengine-inspector "$@"
-exec wmctrl -a qutebrowser
+chromium "$@"
+#qutebrowser --enable-webengine-inspector "$@"
+#exec wmctrl -a qutebrowser
+exec wmctrl -a chromium
