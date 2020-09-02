@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+ps -eo pmem,rss,comm |
+    grep -v '\[' |
+    awk 'NR>2{mem[$3]+=$2}END {for(k in mem) print k "\t" mem[k]};' |
+    sort -rgk 2 |
+    head -n ${1:-15} |
+    column -t -s $'\t'
